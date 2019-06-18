@@ -1,6 +1,7 @@
 package com.ming.userinfo.service;
 
 import com.ming.userinfo.entity.UserInfoEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Service
 public class UserInfoService {
 
+    @Autowired
     UserInfoService userInfo;
 
     public UserInfoService() {

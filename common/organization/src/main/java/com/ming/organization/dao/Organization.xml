@@ -4,6 +4,6 @@
 
     <!--查询组织名称-->
     <select id="getOrganizationName" parameterType="int" resultType="String">
-      select organization_name from e_b_organization where organization_id=#{id}
+      select organization_name from e_b_organization where organization_id=#{organizationId}
     </select>
 </mapper>

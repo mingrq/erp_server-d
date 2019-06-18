@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/test")
 public class WER {
+
     @Autowired
     Organization organization;
 
     @RequestMapping("/org")
     @ResponseBody
     public String getorg() {
-
         String or = organization.getOrganizationName(1);
         return or;
     }

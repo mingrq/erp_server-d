@@ -1,7 +1,9 @@
 package com.ming.organization.entity;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrganizationEntity {
     //组织id
     private int OrganizationId;

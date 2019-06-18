@@ -2,6 +2,7 @@ package com.ming.organization.dao;
 
 import com.ming.organization.entity.OrganizationEntity;
 
+
 /**
  * 组织信息
  */
@@ -17,13 +18,11 @@ public interface Organization {
     /*修改组织*/
     void alertOrganization(OrganizationEntity entity);
 
-    /*修改组织名称*/
-    void alertOrganizationName(OrganizationEntity entity);
-
     /*查询组织*/
     OrganizationEntity getOrganization(int organizationId);
 
     /*查询组织名称*/
     String getOrganizationName(int organizationId);
 
+    /*查询所有组织*/
 }
