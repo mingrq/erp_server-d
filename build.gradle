@@ -100,5 +100,4 @@ dependencies {
     compile project(":login")
     compile project(":userinfo")
     compile project(":organization")
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

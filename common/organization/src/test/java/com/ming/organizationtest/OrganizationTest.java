@@ -15,12 +15,12 @@ public class OrganizationTest {
 
     @Autowired
     OrganizationService service;
+    @Autowired
+    OrganizationEntity organizationEntity ;
 
     /*添加组织*/
     @Test
     public void addOrganization() {
-
-        OrganizationEntity organizationEntity = new OrganizationEntity();
         organizationEntity.setOrganizationId(2);
         organizationEntity.setOrganizationName("明");
         organizationEntity.setOrganizationSuperior(1);
