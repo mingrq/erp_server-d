@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="com.ming.common.main" target="1.8" />
+      <module name="com.ming.common.test" target="1.8" />
+      <module name="com.ming.permission.main" target="1.8" />
+      <module name="com.ming.permission.test" target="1.8" />
+      <module name="common.limits.com.ming.organization.main" target="1.8" />
+      <module name="common.limits.com.ming.organization.test" target="1.8" />
+      <module name="erp_server.main" target="1.8" />
+      <module name="erp_server.test" target="1.8" />
+      <module name="limits.com.ming.limits.main" target="1.8" />
+      <module name="limits.com.ming.limits.test" target="1.8" />
+      <module name="limits.com.ming.organization.main" target="1.8" />
+      <module name="limits.com.ming.organization.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

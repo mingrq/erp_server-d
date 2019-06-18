@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.userinfo.dao.UserInfo">
+
+    <!--添加用户-->
+    <insert id="addUser" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+        insert into e_b_user
+            set
+                user_name,
+                user_sex,
+                user_number,
+                user_phone,
+                user_mobile,
+                user_site,
+                user_bank,
+                user_email,
+                user_gen_time,
+                user_portrait,
+                user_login_name,
+                user_login_pw,
+                user_organization
+            values (
+                #{userName},
+                #{userSex},
+                #{userNumber},
+                #{userPhone},
+                #{userMobile},
+                #{userSite},
+                #{userBank},
+                #{userEmail},
+                #{userGenTime},
+                #{userGenTime},
+                #{userPortrait},
+                #{userLoginName},
+                #{userLoginPw},
+                #{userOrganization}
+            )
+    </insert>
+
+    <!--修改用户姓名-->
+    <update id="alterUserName" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+        update e_b_user set user_name = #{userName} where user_id = #{userId}
+    </update>
+
+    <!--修改用户性别-->
+    <update id="alterUserPortrait" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_portrait = #{userPortrait} where user_id = #{userId}
+    </update>
+
+    <!--修改用户身份证号-->
+    <update id="alterUserNumber" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
+    </update>
+
+    <!--修改用户电话号码-->
+    <update id="alterUserPhone" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
+    </update>
+
+    <!--修改用户手机号码-->
+    <update id="alterUserMobile" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
+    </update>
+
+    <!--修改用户住址-->
+    <update id="alterUserSite" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
+    </update>
+
+    <!--修改用户银行卡号-->
+    <update id="alterUserSite" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_site = #{userSite} where user_id = #{userId}
+    </update>
+
+    <!--修改用户邮箱-->
+    <update id="alterUserEmail" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_email = #{userEmail} where user_id = #{userId}
+    </update>
+
+    <!--修改用户头像地址-->
+    <update id="alterUserPortrait" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_portrait = #{userPortrait} where user_id = #{userId}
+    </update>
+
+    <!--修改用户状态*0:在职&1:离职-->
+    <update id="alterUserState" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_state = #{userState} where user_id = #{userId}
+    </update>
+
+    <!--修改用户登录密码-->
+    <update id="alterUserLoginPw" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_login_pw = #{userLoginPw} where user_id = #{userId}
+    </update>
+
+    <!--修改用户账号状态-->
+    <update id="alterUserIdentificationState" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set identification_state = #{userIdentificationState} where user_id = #{userId}
+    </update>
+
+    <!--修改用户所在组织-->
+    <update id="alterUserOrganization" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+      update e_b_user set user_organization = #{userOrganization} where user_id = #{userId}
+    </update>
+
+    <!--查询用户姓名-->
+    <select id="getUserName" parameterType="int" resultType="String">
+      select user_name from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户性别-->
+    <select id="getUserSex" parameterType="int" resultType="int">
+      select user_sex from e_b_user where user_id = #{userId}
+    </select>
+
+    <!-- 查询用户身份证号-->
+    <select id="getUserNumber" parameterType="int" resultType="String">
+       select user_number from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户电话号码-->
+    <select id="getUserPhone" parameterType="int" resultType="String">
+       select user_phone from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户手机号码-->
+    <select id="getUserMobile" parameterType="int" resultType="String">
+       select user_mobile from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户住址-->
+    <select id="getUserSite" parameterType="int" resultType="String">
+       select user_site from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户银行卡号-->
+    <select id="getUserBank" parameterType="int" resultType="String">
+       select user_bank from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户邮箱-->
+    <select id="getUserEmail" parameterType="int" resultType="String">
+       select user_email from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户头像地址-->
+    <select id="getUserPortrait" parameterType="int" resultType="String">
+       select user_portrait from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户状态0:在职&1:离职-->
+    <select id="getUserState" parameterType="int" resultType="int">
+      select user_state from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户登录用户名-->
+    <select id="getUserLoginPw" parameterType="int" resultType="String">
+      select user_login_name from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户登录密码-->
+    <select id="getUserLoginPw" parameterType="int" resultType="String">
+      select user_login_pw from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户账号状态-->
+    <select id="getUserIdentificationState" parameterType="int" resultType="int">
+      select identification_state from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户所在组织-->
+    <select id="getUserOrganization" parameterType="int" resultType="int">
+      select user_organization from e_b_user where user_id = #{userId}
+    </select>
+
+    <!--查询用户信息-->
+    <select id="getUser" parameterType="int" resultType="com.ming.userinfo.entity.UserInfoEntity">
+      select * from where user_id=#{id}
+    </select>
+</mapper>
