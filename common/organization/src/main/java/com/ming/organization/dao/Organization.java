@@ -13,19 +13,19 @@ public interface Organization {
      * 添加组织
      * @param entity 组织实体
      */
-    void addOrganization(OrganizationEntity entity);
+    int addOrganization(OrganizationEntity entity);
 
     /**
      * 删除组织
      * @param organizationId 组织id
      */
-    void delectOrganization(int organizationId);
+    int delectOrganization(int organizationId);
 
     /**
      * 修改组织
      * @param entity 组织实体
      */
-    void alertOrganization(OrganizationEntity entity);
+    int alertOrganization(OrganizationEntity entity);
 
     /**
      * 查询组织

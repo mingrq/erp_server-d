@@ -16,21 +16,23 @@ public class OrganizationTest {
     @Autowired
     OrganizationService service;
     @Autowired
-    OrganizationEntity organizationEntity ;
+    OrganizationEntity organizationEntity;
 
     /*添加组织*/
     @Test
     public void addOrganization() {
-        organizationEntity.setOrganizationId(2);
         organizationEntity.setOrganizationName("明");
         organizationEntity.setOrganizationSuperior(1);
-        service.addOrganization(organizationEntity);
+        int addResult = service.addOrganization(organizationEntity);
+        System.out.println("成功添加" + addResult + "条组织");
     }
 
 
     /*删除组织*/
     @Test
     public void delectOrganization() {
+        int delectResult = service.delectOrganization(2);
+        System.out.println("成功删除" + delectResult + "条组织");
     }
 
 
@@ -57,6 +59,4 @@ public class OrganizationTest {
     public void getOrganizationName() {
         System.out.println(service.getOrganizationName(1));
     }
-
-
 }

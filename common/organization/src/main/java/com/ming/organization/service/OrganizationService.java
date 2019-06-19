@@ -3,9 +3,13 @@ package com.ming.organization.service;
 import com.ming.organization.dao.Organization;
 import com.ming.organization.entity.OrganizationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 @Component
 public class OrganizationService {
@@ -18,8 +22,15 @@ public class OrganizationService {
      *
      * @param entity 组织实体
      */
-    public void addOrganization(OrganizationEntity entity) {
-        organization.addOrganization(entity);
+    public int addOrganization(OrganizationEntity entity) {
+        //获取当前时间转化格式
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String gentime = dateFormat.format(date);
+        entity.setOrganizationGenTime(gentime);
+        //添加组织
+        int addResult = organization.addOrganization(entity);
+        return addResult;
     }
 
     /**
@@ -27,8 +38,8 @@ public class OrganizationService {
      *
      * @param organizationId 组织id
      */
-    public void delectOrganization(int organizationId) {
-        organization.delectOrganization(organizationId);
+    public int delectOrganization(int organizationId) {
+        return organization.delectOrganization(organizationId);
     }
 
     /**
@@ -36,8 +47,8 @@ public class OrganizationService {
      *
      * @param entity 组织实体
      */
-    public void alertOrganization(OrganizationEntity entity) {
-        organization.alertOrganization(entity);
+    public int alertOrganization(OrganizationEntity entity) {
+        return organization.alertOrganization(entity);
     }
 
     /**
@@ -45,8 +56,8 @@ public class OrganizationService {
      *
      * @param organizationId 组织id
      */
-    public void getOrganization(int organizationId) {
-        organization.getOrganization(organizationId);
+    public OrganizationEntity getOrganization(int organizationId) {
+        return organization.getOrganization(organizationId);
     }
 
     /**

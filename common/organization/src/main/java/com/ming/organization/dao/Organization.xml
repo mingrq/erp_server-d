@@ -3,7 +3,16 @@
 <mapper namespace="com.ming.organization.dao.Organization">
     <!-- 添加组织-->
     <insert id="addOrganization" parameterType="com.ming.organization.entity.OrganizationEntity">
-
+      insert into
+            e_b_organization(
+                organization_name,
+                organization_superior,
+                organization_gen_time
+            )values (
+                #{OrganizationName},
+                #{OrganizationSuperior},
+                #{OrganizationGenTime}
+            )
     </insert>
 
     <!--删除组织-->
