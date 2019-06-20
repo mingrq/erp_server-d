@@ -3,11 +3,17 @@ package com.ming.organizationtest;
 
 import com.ming.organization.entity.OrganizationEntity;
 import com.ming.organization.service.OrganizationService;
+import com.sql.Exceptions.SqlDataUniqueException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -21,42 +27,93 @@ public class OrganizationTest {
     /*添加组织*/
     @Test
     public void addOrganization() {
-        organizationEntity.setOrganizationName("明");
+        organizationEntity.setOrganizationName("羊村");
         organizationEntity.setOrganizationSuperior(1);
-        int addResult = service.addOrganization(organizationEntity);
-        System.out.println("成功添加" + addResult + "条组织");
+        try {
+            int addResult = service.addOrganization(organizationEntity);
+            System.out.println("成功添加" + addResult + "条组织");
+        } catch (SqlDataUniqueException e) {
+            System.out.println("已存在");
+        }
     }
 
+    /*批量添加组织*/
+    @Test
+    public void addBatchOrganization() {
+        List<OrganizationEntity> organizationEntities = new ArrayList<>();
+        OrganizationEntity organizationEntity1 = new OrganizationEntity();
+        organizationEntity1.setOrganizationName("医务室1");
+        organizationEntity1.setOrganizationSuperior(1);
+        OrganizationEntity organizationEntity2 = new OrganizationEntity();
+        organizationEntity2.setOrganizationName("实验室");
+        organizationEntity2.setOrganizationSuperior(1);
+        organizationEntities.add(organizationEntity1);
+        organizationEntities.add(organizationEntity2);
+        int result = 0;
+        try {
+            result = service.addBatchOrganization(organizationEntities);
+        } catch (SqlDataUniqueException e) {
+            e.printStackTrace();
+        }
+        System.out.println("成功插入" + result + "条数据");
+    }
 
     /*删除组织*/
     @Test
     public void delectOrganization() {
-        int delectResult = service.delectOrganization(2);
+        int delectResult = service.delectOrganization(8);
         System.out.println("成功删除" + delectResult + "条组织");
     }
 
 
+    /*批量删除组织*/
+    @Test
+    public void delectBatchOrganization() {
+        List<Integer> delectIds = new ArrayList<>();
+        delectIds.add(5);
+        delectIds.add(6);
+        int delectResult = service.delectBatchOrganization(delectIds);
+        System.out.println("成功删除" + delectResult + "条组织");
+    }
+
     /*修改组织*/
     @Test
     public void alertOrganization() {
+        OrganizationEntity entity = new OrganizationEntity();
+        entity.setOrganizationId(5);
+        entity.setOrganizationName("tes1t");
+        int alertResult = service.alertOrganization(entity);
+        System.out.println("成功修改" + alertResult + "条组织");
     }
-
-
-    /*修改组织名称*/
+    /*批量修改组织*/
     @Test
-    public void alertOrganizationName() {
+    public void alertBatchOrganization() {
+        OrganizationEntity entity = new OrganizationEntity();
+        entity.setOrganizationId(5);
+        entity.setOrganizationName("tes91t");
+        OrganizationEntity entity1 = new OrganizationEntity();
+        entity1.setOrganizationId(6);
+        entity1.setOrganizationSuperior(3);
+        entity1.setOrganizationName("tes1ti");
+        List<OrganizationEntity> entities = new ArrayList<>();
+        entities.add(entity);
+        entities.add(entity1);
+        int alertBatchResult = service.alertBatchOrganization(entities);
+        System.out.println("成功修改" + alertBatchResult + "条组织");
     }
 
 
     /*查询组织*/
     @Test
     public void getOrganization() {
+        OrganizationEntity entity = service.getOrganization(2);
+        System.out.println("成功查询"+entity.toString());
     }
 
 
     /*查询组织名称*/
     @Test
     public void getOrganizationName() {
-        System.out.println(service.getOrganizationName(1));
+        System.out.println(service.getOrganizationName(2));
     }
 }

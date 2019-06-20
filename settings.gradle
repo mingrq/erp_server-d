@@ -7,4 +7,6 @@ include 'limits'
 project(':limits').projectDir = new File(rootDir,'common/limits')
 include 'organization'
 project(':organization').projectDir = new File(rootDir,'common/organization')
+include 'custom'
+project(':custom').projectDir = new File(rootDir,'common/custom')
 

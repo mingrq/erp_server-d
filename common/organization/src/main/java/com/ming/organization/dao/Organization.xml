@@ -15,25 +15,80 @@
             )
     </insert>
 
-    <!--删除组织-->
-    <delete id="delectOrganization" parameterType="int">
+    <!--批量添加组织-->
+    <insert id="addBatchOrganization" parameterType="java.util.List">
+        insert into
+        e_b_organization(
+        organization_name,
+        organization_superior,
+        organization_gen_time
+        )values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.OrganizationName},
+            #{item.OrganizationSuperior},
+            #{item.OrganizationGenTime}
+            )
+        </foreach>
+    </insert>
 
+    <!--删除组织-->
+    <delete id="delectOrganization" parameterType="java.lang.Integer">
+        delete from e_b_organization where organization_id=#{organizationId}
+    </delete>
+
+    <!--批量删除组织-->
+    <delete id="delectBatchOrganization" parameterType="java.util.List">
+        delete from e_b_organization where organization_id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
     </delete>
 
     <!--修改组织-->
     <update id="alertOrganization" parameterType="com.ming.organization.entity.OrganizationEntity">
+        update e_b_organization set
+        <if test="OrganizationName != null">
+            organization_name=#{OrganizationName}
+        </if>
+        <if test="OrganizationSuperior != null">
+            <if test="OrganizationName != null">
+                ,
+            </if>
+            organization_superior=#{OrganizationSuperior}
+        </if>
+        where organization_id = #{OrganizationId}
+    </update>
 
+    <!--批量修改组织-->
+    <update id="alertBatchOrganization" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update e_b_organization set
+            <if test="item.OrganizationName != null">
+                organization_name=#{item.OrganizationName}
+            </if>
+            <if test="item.OrganizationSuperior != null">
+                <if test="item.OrganizationName != null">
+                    ,
+                </if>
+                organization_superior=#{item.OrganizationSuperior}
+            </if>
+            where organization_id = #{item.OrganizationId}
+        </foreach>
     </update>
 
     <!--查询组织-->
     <select id="getOrganization" parameterType="int" resultType="com.ming.organization.entity.OrganizationEntity">
-
+      select * from e_b_organization where organization_id=#{organizationId}
     </select>
 
     <!--查询所有组织-->
-    <!-- <select id="getOrganizationList" parameterType="int" resultType="List<com.ming.organization.entity.OrganizationEntity>">
+    <!--<resultMap id="organizationList" type="com.ming.organization.entity.OrganizationEntity">
 
-     </select>-->
+    </resultMap>-->
+    <!--<select id="getOrganizationList" resultType="organizationList">
+
+    </select>-->
 
     <!--查询组织名称-->
     <select id="getOrganizationName" parameterType="int" resultType="String">

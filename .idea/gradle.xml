@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/common/custom" />
             <option value="$PROJECT_DIR$/common/limits" />
             <option value="$PROJECT_DIR$/common/organization" />
             <option value="$PROJECT_DIR$/common/userinfo" />
