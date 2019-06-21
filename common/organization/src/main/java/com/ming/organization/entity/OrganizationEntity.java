@@ -1,8 +1,10 @@
 package com.ming.organization.entity;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
 @Component
+@Alias("organizationEntity")
 public class OrganizationEntity {
     //组织id
     private int OrganizationId;

@@ -3,6 +3,7 @@ package com.ming.organizationtest;
 
 import com.ming.organization.entity.OrganizationEntity;
 import com.ming.organization.service.OrganizationService;
+import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +26,17 @@ public class OrganizationTest {
     /*添加组织*/
     @Test
     public void addOrganization() {
-        organizationEntity.setOrganizationName("羊村");
+        organizationEntity.setOrganizationName("医wS务d室");
         organizationEntity.setOrganizationSuperior(1);
         try {
-            int addResult = service.addOrganization(organizationEntity);
-            System.out.println("成功添加" + addResult + "条组织");
+            OrganizationEntity addResult = null;
+            addResult = service.addOrganization(organizationEntity);
+            System.out.println("成功添加" + addResult + "条组织,id=" + addResult.getOrganizationId());
         } catch (SqlDataUniqueException e) {
             System.out.println("已存在");
+        } catch (SqlAddDataFailureException e) {
+            //e.printStackTrace();
+            System.out.println("fgd已存在");
         }
     }
 
@@ -45,17 +48,23 @@ public class OrganizationTest {
         organizationEntity1.setOrganizationName("医务室1");
         organizationEntity1.setOrganizationSuperior(1);
         OrganizationEntity organizationEntity2 = new OrganizationEntity();
-        organizationEntity2.setOrganizationName("实验室");
+        organizationEntity2.setOrganizationName("实验室1");
         organizationEntity2.setOrganizationSuperior(1);
         organizationEntities.add(organizationEntity1);
         organizationEntities.add(organizationEntity2);
-        int result = 0;
+        List<OrganizationEntity> result = null;
         try {
             result = service.addBatchOrganization(organizationEntities);
         } catch (SqlDataUniqueException e) {
             e.printStackTrace();
+        } catch (SqlAddDataFailureException e) {
+            e.printStackTrace();
         }
-        System.out.println("成功插入" + result + "条数据");
+        System.out.println("成功添加" + result + "条组织,id");
+        for (OrganizationEntity entity : organizationEntities) {
+            System.out.println("id=" + entity.getOrganizationId());
+        }
+
     }
 
     /*删除组织*/
@@ -85,6 +94,7 @@ public class OrganizationTest {
         int alertResult = service.alertOrganization(entity);
         System.out.println("成功修改" + alertResult + "条组织");
     }
+
     /*批量修改组织*/
     @Test
     public void alertBatchOrganization() {
@@ -107,9 +117,16 @@ public class OrganizationTest {
     @Test
     public void getOrganization() {
         OrganizationEntity entity = service.getOrganization(2);
-        System.out.println("成功查询"+entity.toString());
+        System.out.println("成功查询" + entity.toString());
     }
 
+
+    /*查询所有组织*/
+    @Test
+    public void getOrganizationList() {
+        List<OrganizationEntity> organizationEntities =  service.getOrganizationList();
+        System.out.println("成功查询" + organizationEntities.toString());
+    }
 
     /*查询组织名称*/
     @Test

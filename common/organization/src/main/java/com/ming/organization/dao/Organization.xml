@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.organization.dao.Organization">
-    <!-- 添加组织-->
-    <insert id="addOrganization" parameterType="com.ming.organization.entity.OrganizationEntity">
-      insert into
+
+
+<!--增-->
+
+
+    <sql id="addOrganizationFields">
+        insert into
             e_b_organization(
                 organization_name,
                 organization_superior,
                 organization_gen_time
-            )values (
-                #{OrganizationName},
-                #{OrganizationSuperior},
-                #{OrganizationGenTime}
-            )
+            )values
+    </sql>
+
+    <!-- 添加组织-->
+    <insert id="addOrganization"
+            useGeneratedKeys="true"
+            keyProperty="OrganizationId"
+            parameterType="com.ming.organization.entity.OrganizationEntity">
+        <include refid="addOrganizationFields"/>
+        (
+        #{OrganizationName},
+        #{OrganizationSuperior},
+        #{OrganizationGenTime}
+        )
     </insert>
 
     <!--批量添加组织-->
-    <insert id="addBatchOrganization" parameterType="java.util.List">
-        insert into
-        e_b_organization(
-        organization_name,
-        organization_superior,
-        organization_gen_time
-        )values
+    <insert id="addBatchOrganization"
+            useGeneratedKeys="true"
+            keyProperty="OrganizationId"
+            parameterType="java.util.List">
+        <include refid="addOrganizationFields"/>
         <foreach collection="list" item="item" index="index" separator=",">
             (
             #{item.OrganizationName},
@@ -32,18 +43,30 @@
         </foreach>
     </insert>
 
+
+<!--删-->
+
+
+    <sql id="delectOrganizationFields">
+        delete from e_b_organization where organization_id
+    </sql>
+
     <!--删除组织-->
     <delete id="delectOrganization" parameterType="java.lang.Integer">
-        delete from e_b_organization where organization_id=#{organizationId}
+        <include refid="delectOrganizationFields" />=#{organizationId}
     </delete>
 
     <!--批量删除组织-->
     <delete id="delectBatchOrganization" parameterType="java.util.List">
-        delete from e_b_organization where organization_id in
+        <include refid="delectOrganizationFields" /> in
         <foreach collection="list" item="item" separator="," open="(" close=")">
             #{item}
         </foreach>
     </delete>
+
+
+<!--改-->
+
 
     <!--修改组织-->
     <update id="alertOrganization" parameterType="com.ming.organization.entity.OrganizationEntity">
@@ -77,17 +100,31 @@
         </foreach>
     </update>
 
+
+<!--查-->
+
+    <sql id="getOrganizationFields">
+        select organization_id as OrganizationId,
+                organization_name as OrganizationName,
+                organization_superior as OrganizationSuperior,
+                organization_gen_time as OrganizationGenTime
+        from e_b_organization
+    </sql>
+
     <!--查询组织-->
-    <select id="getOrganization" parameterType="int" resultType="com.ming.organization.entity.OrganizationEntity">
-      select * from e_b_organization where organization_id=#{organizationId}
+    <select id="getOrganization" parameterType="int" resultType="organizationEntity">
+      <include refid="getOrganizationFields"/> where organization_id=#{organizationId}
     </select>
 
     <!--查询所有组织-->
     <!--<resultMap id="organizationList" type="com.ming.organization.entity.OrganizationEntity">
-
-    </resultMap>-->
-    <!--<select id="getOrganizationList" resultType="organizationList">
-
+        <id column="organization_id" property="OrganizationId"/>
+        <result column="organization_name" property="OrganizationName"/>
+        <result column="organization_superior" property="OrganizationSuperior"/>
+        <result column="organization_gen_time" property="OrganizationGenTime"/>
+    </resultMap>
+    <select id="getOrganizationList" resultType="organizationList">
+         select * from e_b_organization
     </select>-->
 
     <!--查询组织名称-->

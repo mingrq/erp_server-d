@@ -2,16 +2,16 @@ package com.ming.organization.service;
 
 import com.ming.organization.dao.Organization;
 import com.ming.organization.entity.OrganizationEntity;
+import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
+import org.apache.ibatis.type.Alias;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.SimpleFormatter;
 
 @Component
 public class OrganizationService {
@@ -25,22 +25,25 @@ public class OrganizationService {
      *
      * @param entity 组织实体
      */
-    public int addOrganization(OrganizationEntity entity) throws SqlDataUniqueException {
+    public OrganizationEntity addOrganization(OrganizationEntity entity) throws SqlDataUniqueException, SqlAddDataFailureException {
         //获取当前时间转化格式
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String gentime = dateFormat.format(date);
         entity.setOrganizationGenTime(gentime);
         //添加组织
-        int addResult = 0;
         try {
-            addResult = organization.addOrganization(entity);
+            int addResult = organization.addOrganization(entity);
+            //添加数据失败时报错
+            if (addResult < 1) {
+                throw new SqlAddDataFailureException();
+            }
         } catch (Exception e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
                 throw new SqlDataUniqueException(e.getCause());
             }
         }
-        return addResult;
+        return entity;
     }
 
     /**
@@ -49,7 +52,7 @@ public class OrganizationService {
      * @param organizationEntities 组织实体集合
      * @return
      */
-    public int addBatchOrganization(List<OrganizationEntity> organizationEntities) throws SqlDataUniqueException {
+    public List<OrganizationEntity> addBatchOrganization(List<OrganizationEntity> organizationEntities) throws SqlDataUniqueException, SqlAddDataFailureException {
         //获取当前时间转化格式
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -58,15 +61,18 @@ public class OrganizationService {
                 organizationEntities) {
             entity.setOrganizationGenTime(gentime);
         }
-        int addResult = 0;
         try {
-            addResult = organization.addBatchOrganization(organizationEntities);
+            int addBatchResult = organization.addBatchOrganization(organizationEntities);
+            //添加数据失败时报错
+            if (addBatchResult < organizationEntities.size()) {
+                throw new SqlAddDataFailureException();
+            }
         } catch (Exception e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
                 throw new SqlDataUniqueException(e.getCause());
             }
         }
-        return addResult;
+        return organizationEntities;
     }
 
     /**
