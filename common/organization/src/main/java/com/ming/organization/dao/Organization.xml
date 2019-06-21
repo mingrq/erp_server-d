@@ -112,20 +112,14 @@
     </sql>
 
     <!--查询组织-->
-    <select id="getOrganization" parameterType="int" resultType="organizationEntity">
+    <select id="getOrganization" parameterType="int" resultType="com.ming.organization.entity.OrganizationEntity">
       <include refid="getOrganizationFields"/> where organization_id=#{organizationId}
     </select>
 
     <!--查询所有组织-->
-    <!--<resultMap id="organizationList" type="com.ming.organization.entity.OrganizationEntity">
-        <id column="organization_id" property="OrganizationId"/>
-        <result column="organization_name" property="OrganizationName"/>
-        <result column="organization_superior" property="OrganizationSuperior"/>
-        <result column="organization_gen_time" property="OrganizationGenTime"/>
-    </resultMap>
-    <select id="getOrganizationList" resultType="organizationList">
-         select * from e_b_organization
-    </select>-->
+    <select id="getOrganizationList" resultType="com.ming.organization.entity.OrganizationEntity">
+        <include refid="getOrganizationFields"/>
+    </select>
 
     <!--查询组织名称-->
     <select id="getOrganizationName" parameterType="int" resultType="String">
