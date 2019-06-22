@@ -3,6 +3,7 @@ package com.ming.organization.service;
 import com.ming.organization.dao.Organization;
 import com.ming.organization.entity.OrganizationEntity;
 import com.sql.Exceptions.SqlAddDataFailureException;
+import com.sql.Exceptions.SqlAlterFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
 import org.apache.ibatis.type.Alias;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,8 +99,12 @@ public class OrganizationService {
      *
      * @param entity 组织实体
      */
-    public int alertOrganization(OrganizationEntity entity) {
-        return organization.alertOrganization(entity);
+    public int alertOrganization(OrganizationEntity entity) throws SqlAlterFailureException {
+        int alterResult = organization.alertOrganization(entity);
+        if (alterResult<1){
+            throw new SqlAlterFailureException();
+        }
+        return alterResult;
     }
 
 
@@ -109,7 +114,9 @@ public class OrganizationService {
      * @param organizationEntities 组织实体集合
      */
     public int alertBatchOrganization(List<OrganizationEntity> organizationEntities) {
-        return organization.alertBatchOrganization(organizationEntities);
+
+        int alterBatchResult =organization.alertBatchOrganization(organizationEntities);
+        return alterBatchResult;
     }
 
     /**
@@ -156,7 +163,7 @@ public class OrganizationService {
      * @param organizationId 组织id
      * @return 上级组织id
      */
-    public int getOrganizationSuperiorId(int organizationId) {
-        return organization.getOrganizationSuperiorId(organizationId);
+    public OrganizationEntity getOrganizationSuperior(int organizationId) {
+        return organization.getOrganizationSuperior(organizationId);
     }
 }

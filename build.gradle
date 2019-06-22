@@ -98,6 +98,4 @@ subprojects {
 dependencies {
     /*以下是使用的模块*/
     compile project(":login")
-    compile project(":userinfo")
-    compile project(":organization")
 }

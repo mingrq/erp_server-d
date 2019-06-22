@@ -4,6 +4,7 @@ package com.ming.organizationtest;
 import com.ming.organization.entity.OrganizationEntity;
 import com.ming.organization.service.OrganizationService;
 import com.sql.Exceptions.SqlAddDataFailureException;
+import com.sql.Exceptions.SqlAlterFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,7 +50,7 @@ public class OrganizationTest {
         organizationEntity1.setOrganizationSuperior(1);
         OrganizationEntity organizationEntity2 = new OrganizationEntity();
         organizationEntity2.setOrganizationName("实验室1");
-        organizationEntity2.setOrganizationSuperior(1);
+        //organizationEntity2.setOrganizationSuperior(1);
         organizationEntities.add(organizationEntity1);
         organizationEntities.add(organizationEntity2);
         List<OrganizationEntity> result = null;
@@ -70,7 +71,7 @@ public class OrganizationTest {
     /*删除组织*/
     @Test
     public void delectOrganization() {
-        int delectResult = service.delectOrganization(8);
+        int delectResult = service.delectOrganization(42);
         System.out.println("成功删除" + delectResult + "条组织");
     }
 
@@ -79,8 +80,8 @@ public class OrganizationTest {
     @Test
     public void delectBatchOrganization() {
         List<Integer> delectIds = new ArrayList<>();
-        delectIds.add(5);
-        delectIds.add(6);
+        delectIds.add(40);
+        delectIds.add(41);
         int delectResult = service.delectBatchOrganization(delectIds);
         System.out.println("成功删除" + delectResult + "条组织");
     }
@@ -89,22 +90,27 @@ public class OrganizationTest {
     @Test
     public void alertOrganization() {
         OrganizationEntity entity = new OrganizationEntity();
-        entity.setOrganizationId(5);
+        entity.setOrganizationId(3);
         entity.setOrganizationName("tes1t");
-        int alertResult = service.alertOrganization(entity);
-        System.out.println("成功修改" + alertResult + "条组织");
+
+        try {
+            int alertResult = service.alertOrganization(entity);
+            System.out.println("成功修改" + alertResult + "条组织");
+        } catch (SqlAlterFailureException e) {
+            System.out.println("成功修改" + "sdfsdfs" + "条组织");
+        }
     }
 
     /*批量修改组织*/
     @Test
     public void alertBatchOrganization() {
         OrganizationEntity entity = new OrganizationEntity();
-        entity.setOrganizationId(5);
-        entity.setOrganizationName("tes91t");
+        entity.setOrganizationId(56);
+        entity.setOrganizationName("的风格");
         OrganizationEntity entity1 = new OrganizationEntity();
-        entity1.setOrganizationId(6);
+        entity1.setOrganizationId(57);
         entity1.setOrganizationSuperior(3);
-        entity1.setOrganizationName("tes1ti");
+        entity1.setOrganizationName("阿斯蒂芬");
         List<OrganizationEntity> entities = new ArrayList<>();
         entities.add(entity);
         entities.add(entity1);
@@ -132,5 +138,17 @@ public class OrganizationTest {
     @Test
     public void getOrganizationName() {
         System.out.println(service.getOrganizationName(2));
+    }
+
+    /*查询组织创建时间*/
+    @Test
+    public void getOrganizationGenTime() {
+        System.out.println(service.getOrganizationGenTime(2));
+    }
+
+    /*查询上级组织*/
+    @Test
+    public void getOrganizationSuperior() {
+        System.out.println(service.getOrganizationSuperior(2));
     }
 }

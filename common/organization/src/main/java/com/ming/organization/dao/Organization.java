@@ -85,10 +85,10 @@ public interface Organization {
     String getOrganizationGenTime(int organizationId);
 
     /**
-     * 查询上级组织id
+     * 查询上级组织
      *
      * @param organizationId 组织id
-     * @return 上级组织id
+     * @return 上级组织
      */
-    int getOrganizationSuperiorId(int organizationId);
+    OrganizationEntity getOrganizationSuperior(int organizationId);
 }

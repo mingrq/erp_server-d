@@ -4,14 +4,13 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
 @Component
-@Alias("organizationEntity")
 public class OrganizationEntity {
     //组织id
     private int OrganizationId;
     //组织名称
     private String OrganizationName;
     //上级组织id
-    private int OrganizationSuperior;
+    private int OrganizationSuperior = -1;
     //创建时间
     private String OrganizationGenTime;
 
@@ -47,4 +46,14 @@ public class OrganizationEntity {
         OrganizationGenTime = organizationGenTime;
     }
 
+
+    @Override
+    public String toString() {
+        return "OrganizationEntity{" +
+                "OrganizationId=" + OrganizationId +
+                ", OrganizationName='" + OrganizationName + '\'' +
+                ", OrganizationSuperior=" + OrganizationSuperior +
+                ", OrganizationGenTime='" + OrganizationGenTime + '\'' +
+                '}';
+    }
 }

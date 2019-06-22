@@ -23,7 +23,12 @@
         <include refid="addOrganizationFields"/>
         (
         #{OrganizationName},
-        #{OrganizationSuperior},
+        <if test="OrganizationSuperior != -1">
+            #{OrganizationSuperior},
+        </if>
+        <if test="OrganizationSuperior == -1">
+            null,
+        </if>
         #{OrganizationGenTime}
         )
     </insert>
@@ -37,7 +42,12 @@
         <foreach collection="list" item="item" index="index" separator=",">
             (
             #{item.OrganizationName},
-            #{item.OrganizationSuperior},
+            <if test="item.OrganizationSuperior != -1">
+                #{item.OrganizationSuperior},
+            </if>
+            <if test="item.OrganizationSuperior == -1">
+               null,
+            </if>
             #{item.OrganizationGenTime}
             )
         </foreach>
@@ -74,7 +84,7 @@
         <if test="OrganizationName != null">
             organization_name=#{OrganizationName}
         </if>
-        <if test="OrganizationSuperior != null">
+        <if test="OrganizationSuperior != -1">
             <if test="OrganizationName != null">
                 ,
             </if>
@@ -87,15 +97,11 @@
     <update id="alertBatchOrganization" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" separator=";">
             update e_b_organization set
-            <if test="item.OrganizationName != null">
+
                 organization_name=#{item.OrganizationName}
-            </if>
-            <if test="item.OrganizationSuperior != null">
-                <if test="item.OrganizationName != null">
-                    ,
-                </if>
+
                 organization_superior=#{item.OrganizationSuperior}
-            </if>
+
             where organization_id = #{item.OrganizationId}
         </foreach>
     </update>
@@ -118,7 +124,7 @@
 
     <!--查询所有组织-->
     <select id="getOrganizationList" resultType="com.ming.organization.entity.OrganizationEntity">
-        <include refid="getOrganizationFields"/>
+        <include refid="getOrganizationFields"/>order by organization_name
     </select>
 
     <!--查询组织名称-->
@@ -131,10 +137,13 @@
       select organization_gen_time from e_b_organization where organization_id=#{organizationId}
     </select>
 
-    <!--查询上级组织id-->
-    <select id="getOrganizationSuperiorId" parameterType="int" resultType="int">
-      select organization_superior from e_b_organization where organization_id=#{organizationId}
+    <!--查询上级组织-->
+    <select id="getOrganizationSuperior" parameterType="int" resultType="com.ming.organization.entity.OrganizationEntity">
+        <include refid="getOrganizationFields"/> where organization_id=(select organization_superior from e_b_organization where organization_id=#{organizationId})
     </select>
 
-
+    <!--查询顶级组织-->
+    <select id="getCompany" resultType="com.ming.organization.entity.OrganizationEntity">
+         select * from e_b_organization where organization_superior is null
+    </select>
 </mapper>

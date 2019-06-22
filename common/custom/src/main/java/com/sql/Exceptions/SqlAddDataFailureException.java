@@ -5,4 +5,10 @@ package com.sql.Exceptions;
  */
 public class SqlAddDataFailureException extends Exception {
 
+
+    public enum FailureCause {
+        //不存在的
+        INEXISTENCE,
+
+    }
 }

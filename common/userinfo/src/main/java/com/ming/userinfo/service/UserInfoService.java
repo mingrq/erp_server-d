@@ -1,6 +1,8 @@
 package com.ming.userinfo.service;
 
 import com.ming.userinfo.entity.UserInfoEntity;
+import com.sql.Exceptions.SqlAddDataFailureException;
+import com.sql.Exceptions.SqlDataUniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +22,17 @@ public class UserInfoService {
     /**
      * 添加用户
      */
-    public void addUser(UserInfoEntity userInfoEntity) {
+    public void addUser(UserInfoEntity userInfoEntity) throws SqlDataUniqueException, SqlAddDataFailureException {
         //获取当前时间转化格式
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String gentime = dateFormat.format(date);
-        userInfoEntity.setUserGenTime(gentime);
+        try {
+            userInfoEntity.setUserGenTime(gentime);
+        }catch (Exception e){
+
+        }
+
         //添加用户
         userInfo.addUser(userInfoEntity);
     }
