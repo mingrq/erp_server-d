@@ -3,103 +3,44 @@
 <mapper namespace="com.ming.userinfo.dao.UserInfo">
 
     <!--添加用户-->
-    <insert id="addUser" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-        insert into e_b_user
-            set
-                user_name,
-                user_sex,
-                user_number,
-                user_phone,
-                user_mobile,
-                user_site,
-                user_bank,
-                user_email,
-                user_gen_time,
-                user_portrait,
-                user_login_name,
-                user_login_pw,
-                user_organization
-            values (
-                #{userName},
-                #{userSex},
-                #{userNumber},
-                #{userPhone},
-                #{userMobile},
-                #{userSite},
-                #{userBank},
-                #{userEmail},
-                #{userGenTime},
-                #{userGenTime},
-                #{userPortrait},
-                #{userLoginName},
-                #{userLoginPw},
-                #{userOrganization}
-            )
+    <insert id="addUser"
+            useGeneratedKeys="true"
+            keyProperty="userId"
+            parameterType="com.ming.userinfo.entity.UserInfoEntity">
+        insert into e_b_user(
+        user_name,
+        user_sex,
+        user_number,
+        user_phone,
+        user_mobile,
+        user_site,
+        user_bank,
+        user_email,
+        user_gen_time,
+        user_portrait,
+        user_login_name,
+        user_login_pw,
+        user_organization
+        )values (
+        #{userName},
+        #{userSex},
+        #{userNumber},
+        #{userPhone},
+        #{userMobile},
+        #{userSite},
+        #{userBank},
+        #{userEmail},
+        #{userGenTime},
+        #{userPortrait},
+        #{userLoginName},
+        #{userLoginPw},
+        #{userOrganization}
+        )
     </insert>
 
-    <!--修改用户姓名-->
-    <update id="alterUserName" parameterType="com.ming.userinfo.entity.UserInfoEntity">
+    <!--修改用户-->
+    <update id="alterUser" parameterType="com.ming.userinfo.entity.UserInfoEntity">
         update e_b_user set user_name = #{userName} where user_id = #{userId}
-    </update>
-
-    <!--修改用户性别-->
-    <update id="alterUserPortrait" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_portrait = #{userPortrait} where user_id = #{userId}
-    </update>
-
-    <!--修改用户身份证号-->
-    <update id="alterUserNumber" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
-    </update>
-
-    <!--修改用户电话号码-->
-    <update id="alterUserPhone" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
-    </update>
-
-    <!--修改用户手机号码-->
-    <update id="alterUserMobile" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
-    </update>
-
-    <!--修改用户住址-->
-    <update id="alterUserSite" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_number = #{userNumber} where user_id = #{userId}
-    </update>
-
-    <!--修改用户银行卡号-->
-    <update id="alterUserSite" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_site = #{userSite} where user_id = #{userId}
-    </update>
-
-    <!--修改用户邮箱-->
-    <update id="alterUserEmail" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_email = #{userEmail} where user_id = #{userId}
-    </update>
-
-    <!--修改用户头像地址-->
-    <update id="alterUserPortrait" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_portrait = #{userPortrait} where user_id = #{userId}
-    </update>
-
-    <!--修改用户状态*0:在职&1:离职-->
-    <update id="alterUserState" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_state = #{userState} where user_id = #{userId}
-    </update>
-
-    <!--修改用户登录密码-->
-    <update id="alterUserLoginPw" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_login_pw = #{userLoginPw} where user_id = #{userId}
-    </update>
-
-    <!--修改用户账号状态-->
-    <update id="alterUserIdentificationState" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set identification_state = #{userIdentificationState} where user_id = #{userId}
-    </update>
-
-    <!--修改用户所在组织-->
-    <update id="alterUserOrganization" parameterType="com.ming.userinfo.entity.UserInfoEntity">
-      update e_b_user set user_organization = #{userOrganization} where user_id = #{userId}
     </update>
 
     <!--查询用户姓名-->

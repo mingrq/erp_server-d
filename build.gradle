@@ -65,6 +65,8 @@ subprojects {
         compile "org.springframework:spring-context:$spring_version"
         compile "org.springframework:spring-context-support:$spring_version"
         compile "org.springframework:spring-tx:$spring_version"
+        //spring +websocket
+        compile "org.springframework:spring-websocket:$spring_version"
 
         //MyBatis
         //compile "org.mybatis:mybatis:3.0.5"

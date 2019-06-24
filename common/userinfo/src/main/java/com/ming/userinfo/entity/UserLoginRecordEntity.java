@@ -11,6 +11,9 @@ public class UserLoginRecordEntity {
     //用户登录来源 0:app & 1:window & 2:webpage & 3:AppleApp(苹果手机)
     private int LoginSource;
 
+    //用户token
+    private String userToken;
+
     public String getLoginTime() {
         return LoginTime;
     }
@@ -25,5 +28,13 @@ public class UserLoginRecordEntity {
 
     public void setLoginSource(int loginSource) {
         LoginSource = loginSource;
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 }

@@ -1,5 +1,6 @@
 package com.ming.userinfo.service;
 
+import com.ming.userinfo.dao.UserInfo;
 import com.ming.userinfo.entity.UserInfoEntity;
 import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,7 +16,7 @@ import java.util.Date;
 public class UserInfoService {
 
     @Autowired
-    UserInfoService userInfo;
+    UserInfo userInfo;
 
     public UserInfoService() {
     }
@@ -22,101 +24,31 @@ public class UserInfoService {
     /**
      * 添加用户
      */
-    public void addUser(UserInfoEntity userInfoEntity) throws SqlDataUniqueException, SqlAddDataFailureException {
+    public UserInfoEntity addUser(UserInfoEntity userInfoEntity) throws SqlDataUniqueException, SqlAddDataFailureException {
         //获取当前时间转化格式
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String gentime = dateFormat.format(date);
+        userInfoEntity.setUserGenTime(gentime);
         try {
-            userInfoEntity.setUserGenTime(gentime);
+            //添加用户
+            int addResult = userInfo.addUser(userInfoEntity);
+            if (addResult<1){
+                throw new SqlAddDataFailureException();
+            }
         }catch (Exception e){
-
+            if( e.getCause() instanceof SQLIntegrityConstraintViolationException){
+                throw new SqlDataUniqueException(e.getCause());
+            }
         }
-
-        //添加用户
-        userInfo.addUser(userInfoEntity);
+       return userInfoEntity;
     }
 
     /**
-     * 修改用户姓名
+     * 修改用户
      */
-    public void alterUserName(String userName) {
-        userInfo.alterUserName(userName);
-    }
-
-    /**
-     * 修改用户性别
-     */
-    public void alterUserSex(int sex) {
-
-    }
-
-    /**
-     * 修改用户身份证号
-     */
-    public void alterUserNumber(String number) {
-    }
-
-    /**
-     * 修改用户电话号码
-     */
-    public void alterUserPhone(String phone) {
-    }
-
-    /**
-     * 修改用户手机号码
-     */
-    public void alterUserMobile(String mobile) {
-    }
-
-    /**
-     * 修改用户住址
-     */
-    public void alterUserSite(String site) {
-    }
-
-    /**
-     * 修改用户银行卡号
-     */
-    public void alterUserBank(String bank) {
-    }
-
-    /**
-     * 修改用户邮箱
-     */
-    public void alterUserEmail(String email) {
-    }
-
-    /**
-     * 修改用户头像地址
-     */
-    public void alterUserPortrait(String portrait) {
-    }
-
-    /**
-     * 修改用户状态--在职&离职
-     */
-    public void alterUserState(int state) {
-    }
-
-    /**
-     * 修改用户登录密码
-     */
-    public void alterUserLoginPw(String pw) {
-    }
-
-    /**
-     * 修改用户账号状态
-     */
-    public void alterUserIdentificationState(int identificationState) {
-
-    }
-
-    /**
-     * 修改用户所在组织
-     */
-    public void alterUserOrganization(int organizationId) {
-
+    public void alterUser(UserInfoEntity userInfoEntity) {
+        userInfo.alterUser(userInfoEntity);
     }
 
     /**

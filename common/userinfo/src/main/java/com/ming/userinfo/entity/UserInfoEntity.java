@@ -1,9 +1,12 @@
 package com.ming.userinfo.entity;
 
 
+import org.springframework.stereotype.Component;
+
 /**
  * 用户个人信息
  */
+@Component
 public class UserInfoEntity {
     //用户Id
     private int userId;
@@ -39,6 +42,7 @@ public class UserInfoEntity {
     private int identificationState;
     //用户所在组织id
     private int userOrganization;
+
 
     public int getUserId() {
         return userId;
@@ -175,4 +179,5 @@ public class UserInfoEntity {
     public void setUserOrganization(int userOrganization) {
         this.userOrganization = userOrganization;
     }
+
 }

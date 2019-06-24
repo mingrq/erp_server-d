@@ -114,7 +114,6 @@ public class OrganizationService {
      * @param organizationEntities 组织实体集合
      */
     public int alertBatchOrganization(List<OrganizationEntity> organizationEntities) {
-
         int alterBatchResult =organization.alertBatchOrganization(organizationEntities);
         return alterBatchResult;
     }
