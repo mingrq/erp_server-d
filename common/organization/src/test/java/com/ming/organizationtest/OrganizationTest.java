@@ -90,9 +90,9 @@ public class OrganizationTest {
     @Test
     public void alertOrganization() {
         OrganizationEntity entity = new OrganizationEntity();
-        entity.setOrganizationId(3);
-        entity.setOrganizationName("tes1t");
-
+        entity.setOrganizationId(56);
+        //entity.setOrganizationName("gsgju");
+        entity.setOrganizationSuperior(1);
         try {
             int alertResult = service.alertOrganization(entity);
             System.out.println("成功修改" + alertResult + "条组织");
@@ -106,11 +106,12 @@ public class OrganizationTest {
     public void alertBatchOrganization() {
         OrganizationEntity entity = new OrganizationEntity();
         entity.setOrganizationId(56);
-        entity.setOrganizationName("的风格");
+        entity.setOrganizationName("asf");
+        entity.setOrganizationSuperior(1);
         OrganizationEntity entity1 = new OrganizationEntity();
         entity1.setOrganizationId(57);
-        entity1.setOrganizationSuperior(3);
-        entity1.setOrganizationName("阿斯蒂芬");
+        entity1.setOrganizationSuperior(2);
+        entity1.setOrganizationName("asdf");
         List<OrganizationEntity> entities = new ArrayList<>();
         entities.add(entity);
         entities.add(entity1);

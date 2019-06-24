@@ -80,28 +80,30 @@
 
     <!--修改组织-->
     <update id="alertOrganization" parameterType="com.ming.organization.entity.OrganizationEntity">
-        update e_b_organization set
-        <if test="OrganizationName != null">
-            organization_name=#{OrganizationName}
-        </if>
-        <if test="OrganizationSuperior != -1">
+        update e_b_organization
+        <set>
             <if test="OrganizationName != null">
-                ,
+                organization_name=#{OrganizationName}
             </if>
-            organization_superior=#{OrganizationSuperior}
-        </if>
-        where organization_id = #{OrganizationId}
+            <if test="OrganizationSuperior != -1">
+               , organization_superior=#{OrganizationSuperior}
+            </if>
+            where organization_id = #{OrganizationId}
+        </set>
     </update>
 
     <!--批量修改组织-->
     <update id="alertBatchOrganization" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" separator=";">
-            update e_b_organization set
-
-                organization_name=#{item.OrganizationName}
-
-                organization_superior=#{item.OrganizationSuperior}
-
+            update e_b_organization
+            <set>
+                <if test="item.OrganizationName != null">
+                    organization_name=#{item.OrganizationName}
+                </if>
+                <if test="item.OrganizationSuperior != -1">
+                    , organization_superior=#{item.OrganizationSuperior}
+                </if>
+            </set>
             where organization_id = #{item.OrganizationId}
         </foreach>
     </update>
