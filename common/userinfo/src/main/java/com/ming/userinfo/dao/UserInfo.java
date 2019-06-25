@@ -84,5 +84,10 @@ public interface UserInfo {
     /**
      * 查询用户信息
      */
-    UserInfoEntity getUser(int id);
+    UserInfoEntity getUserUseId(int id);
+
+    /**
+     * 查询用户信息-根据登录用户名
+     */
+    UserInfoEntity getUserUseLoginName(String userLoginName);
 }

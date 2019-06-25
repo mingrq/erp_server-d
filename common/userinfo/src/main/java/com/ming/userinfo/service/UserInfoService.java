@@ -7,7 +7,7 @@ import com.sql.Exceptions.SqlDataUniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -145,7 +145,14 @@ public class UserInfoService {
     /**
      * 查询用户信息
      */
-    public UserInfoEntity getUser(int id) {
-        return userInfo.getUser(id);
+    public UserInfoEntity getUserUseId(int id) {
+        return userInfo.getUserUseId(id);
+    }
+
+    /**
+     * 查询用户信息-根据登录用户名
+     */
+    public  UserInfoEntity getUserUseLoginName(String userLoginName){
+        return userInfo.getUserUseLoginName(userLoginName);
     }
 }

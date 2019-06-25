@@ -114,7 +114,12 @@
     </select>
 
     <!--查询用户信息-->
-    <select id="getUser" parameterType="int" resultType="com.ming.userinfo.entity.UserInfoEntity">
-      select * from where user_id=#{id}
+    <select id="getUserUseId" parameterType="int" resultType="com.ming.userinfo.entity.UserInfoEntity">
+      select * from e_b_user where user_id=#{id}
+    </select>
+
+    <!--查询用户信息-根据登录用户名-->
+    <select id="getUserUseLoginName" parameterType="String" resultType="com.ming.userinfo.entity.UserInfoEntity">
+      select * from e_b_user where user_login_name=#{userLoginName}
     </select>
 </mapper>
