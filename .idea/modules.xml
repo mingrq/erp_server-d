@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.ming.erp_server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.ming.erp_server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.ming.erp_server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.ming.erp_server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/limits/com.ming.limits.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/limits/com.ming.limits.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/limits/com.ming.limits.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/limits/com.ming.limits.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/operation/login/com.ming.login.main.iml" filepath="$PROJECT_DIR$/.idea/modules/operation/login/com.ming.login.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/operation/login/com.ming.login.test.iml" filepath="$PROJECT_DIR$/.idea/modules/operation/login/com.ming.login.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/organization/com.ming.organization.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/organization/com.ming.organization.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/organization/com.ming.organization.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/organization/com.ming.organization.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/userinfo/com.ming.userinfo.iml" filepath="$PROJECT_DIR$/.idea/modules/common/userinfo/com.ming.userinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/userinfo/com.ming.userinfo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/userinfo/com.ming.userinfo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/userinfo/com.ming.userinfo.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/userinfo/com.ming.userinfo.test.iml" />
+    </modules>
+  </component>
+</project>
