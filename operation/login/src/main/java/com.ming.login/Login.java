@@ -1,8 +1,8 @@
 package com.ming.login;
 
 import com.google.gson.Gson;
-import com.ming.userinfo.entity.UserInfoEntity;
-import com.ming.userinfo.service.UserInfoService;
+import com.ming.user.userinfo.entity.UserInfoEntity;
+import com.ming.user.userinfo.service.UserInfoService;
 import com.utils.json.JsonFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

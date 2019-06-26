@@ -1,12 +1,8 @@
 rootProject.name = 'erp_server'
 include 'login'
 project(':login').projectDir = new File(rootDir,'operation/login')
-include 'userinfo'
-project(':userinfo').projectDir = new File(rootDir,'common/userinfo')
-include 'limits'
-project(':limits').projectDir = new File(rootDir,'common/limits')
-include 'organization'
-project(':organization').projectDir = new File(rootDir,'common/organization')
 include 'custom'
 project(':custom').projectDir = new File(rootDir,'common/custom')
+include 'com-common'
+project(':com-common').projectDir = new File(rootDir,'common/com-common')
 
