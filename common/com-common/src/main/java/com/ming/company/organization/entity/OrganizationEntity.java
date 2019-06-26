@@ -1,6 +1,5 @@
 package com.ming.company.organization.entity;
 
-import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -46,14 +45,4 @@ public class OrganizationEntity {
         OrganizationGenTime = organizationGenTime;
     }
 
-
-    @Override
-    public String toString() {
-        return "OrganizationEntity{" +
-                "OrganizationId=" + OrganizationId +
-                ", OrganizationName='" + OrganizationName + '\'' +
-                ", OrganizationSuperior=" + OrganizationSuperior +
-                ", OrganizationGenTime='" + OrganizationGenTime + '\'' +
-                '}';
-    }
 }

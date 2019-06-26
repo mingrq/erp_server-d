@@ -1,12 +1,13 @@
 package com.ming.company.user.entity;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Component;
 
 /**
  * 用户信息类
  */
 @Component
-public class UserEntity extends UserInfoEntity {
+public class UserEntity {
     //用户Id
     private int userId;
     //用户姓名

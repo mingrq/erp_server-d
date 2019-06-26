@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.company.user.dao.UserTemporaryLimit">
+    <!--添加临时权限-->
+    <insert id="addTemporaryLimit">
+
+    </insert>
+
+    <!--批量添加临时权限-->
+    <insert id="addBatchTemporaryLimit">
+
+    </insert>
+    <!--修改临时权限-->
+    <update id="alterTemporaryLimit">
+
+    </update>
+    <!--批量修改临时权限-->
+
+    <update id="alterBatchTemporaryLimit">
+
+    </update>
+    <!--查询临时权限-->
+    <select id="selectTemporaryLimit">
+
+    </select>
+</mapper>

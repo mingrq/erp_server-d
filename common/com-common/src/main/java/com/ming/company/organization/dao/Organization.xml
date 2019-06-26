@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ming.organization.dao.Organization">
+<mapper namespace="com.ming.company.organization.dao.Organization">
 
 
 <!--增-->
@@ -19,7 +19,7 @@
     <insert id="addOrganization"
             useGeneratedKeys="true"
             keyProperty="OrganizationId"
-            parameterType="com.ming.organization.entity.OrganizationEntity">
+            parameterType="com.ming.company.organization.entity.OrganizationEntity">
         <include refid="addOrganizationFields"/>
         (
         #{OrganizationName},
@@ -79,7 +79,7 @@
 
 
     <!--修改组织-->
-    <update id="alertOrganization" parameterType="com.ming.organization.entity.OrganizationEntity">
+    <update id="alertOrganization" parameterType="com.ming.company.organization.entity.OrganizationEntity">
         update e_b_organization
         <set>
             <if test="OrganizationName != null">
@@ -120,12 +120,12 @@
     </sql>
 
     <!--查询组织-->
-    <select id="getOrganization" parameterType="int" resultType="com.ming.organization.entity.OrganizationEntity">
+    <select id="getOrganization" parameterType="int" resultType="com.ming.company.organization.entity.OrganizationEntity">
       <include refid="getOrganizationFields"/> where organization_id=#{organizationId}
     </select>
 
     <!--查询所有组织-->
-    <select id="getOrganizationList" resultType="com.ming.organization.entity.OrganizationEntity">
+    <select id="getOrganizationList" resultType="com.ming.company.organization.entity.OrganizationEntity">
         <include refid="getOrganizationFields"/>order by organization_name
     </select>
 
@@ -140,12 +140,12 @@
     </select>
 
     <!--查询上级组织-->
-    <select id="getOrganizationSuperior" parameterType="int" resultType="com.ming.organization.entity.OrganizationEntity">
+    <select id="getOrganizationSuperior" parameterType="int" resultType="com.ming.company.organization.entity.OrganizationEntity">
         <include refid="getOrganizationFields"/> where organization_id=(select organization_superior from e_b_organization where organization_id=#{organizationId})
     </select>
 
     <!--查询顶级组织-->
-    <select id="getCompany" resultType="com.ming.organization.entity.OrganizationEntity">
+    <select id="getCompany" resultType="com.ming.company.organization.entity.OrganizationEntity">
          select * from e_b_organization where organization_superior is null
     </select>
 </mapper>

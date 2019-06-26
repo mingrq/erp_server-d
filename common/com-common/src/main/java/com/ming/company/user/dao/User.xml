@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ming.user.userinfo.dao.UserInfo">
+<mapper namespace="com.ming.company.user.dao.User">
 
     <!--添加用户-->
     <insert id="addUser"
             useGeneratedKeys="true"
             keyProperty="userId"
-            parameterType="com.ming.user.userinfo.entity.UserEntity">
+            parameterType="com.ming.company.user.entity.UserEntity">
         insert into e_b_user(
         user_name,
         user_sex,
@@ -39,7 +39,7 @@
     </insert>
 
     <!--修改用户-->
-    <update id="alterUser" parameterType="com.ming.user.userinfo.entity.UserEntity">
+    <update id="alterUser" parameterType="com.ming.company.user.entity.UserEntity">
         update e_b_user set user_name = #{userName} where user_id = #{userId}
     </update>
 
@@ -114,12 +114,12 @@
     </select>
 
     <!--查询用户信息-->
-    <select id="getUserUseId" parameterType="int" resultType="com.ming.user.userinfo.entity.UserEntity">
+    <select id="getUserUseId" parameterType="int" resultType="com.ming.company.user.entity.UserEntity">
       select * from e_b_user where user_id=#{id}
     </select>
 
     <!--查询用户信息-根据登录用户名-->
-    <select id="getUserUseLoginName" parameterType="String" resultType="com.ming.user.userinfo.entity.UserEntity">
+    <select id="getUserUseLoginName" parameterType="String" resultType="com.ming.company.user.entity.UserEntity">
       select * from e_b_user where user_login_name=#{userLoginName}
     </select>
 </mapper>

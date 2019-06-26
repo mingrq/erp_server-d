@@ -151,7 +151,7 @@ public class UserService {
     /**
      * 查询用户信息-根据登录用户名
      */
-    public  UserEntity getUserUseLoginName(String userLoginName){
+    public UserEntity getUserUseLoginName(String userLoginName){
         return user.getUserUseLoginName(userLoginName);
     }
 }
