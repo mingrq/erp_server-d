@@ -1,7 +1,9 @@
 package com.ming.company.user.service;
 
+import com.ming.company.user.aop.anno.GatherUserInfo;
 import com.ming.company.user.dao.User;
 import com.ming.company.user.entity.UserEntity;
+import com.ming.company.user.entity.UserInfoEntity;
 import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,7 +153,9 @@ public class UserService {
     /**
      * 查询用户信息-根据登录用户名
      */
-    public UserEntity getUserUseLoginName(String userLoginName){
-        return user.getUserUseLoginName(userLoginName);
+
+    public Object getUserUseLoginName(String userLoginName){
+        UserEntity userEntity =  user.getUserUseLoginName(userLoginName);
+        return userEntity;
     }
 }

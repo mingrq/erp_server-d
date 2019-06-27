@@ -1,18 +1,23 @@
 package com.ming.company.user.entity;
 
 
+import com.ming.company.organization.entity.OrganizationEntity;
 import com.ming.company.organization.entity.OrganizationLimitEntity;
+import com.ming.company.role.entity.RoleEntity;
 import com.ming.company.role.entity.RoleLimitEntity;
 import org.springframework.stereotype.Component;
 
+import javax.management.relation.Role;
 import java.util.List;
 
 /**
  * 用户信息
  */
 @Component
-public class UserInfoEntity extends UserEntity{
-    //用户所在组织集合
+public class UserInfoEntity {
+    UserEntity userEntity;
+    //用户上级组织集
+    List<OrganizationEntity> organizationParentList;
     //用户个人权限集
     List<UserLimitEntity> userLimitList;
     //组织权限集
@@ -21,6 +26,32 @@ public class UserInfoEntity extends UserEntity{
     List<UserTemporaryLimitEntity> userTemporaryLimitList;
     //角色权限集
     List<RoleLimitEntity> roleLimitList;
+    //用户角色集合
+    List<RoleEntity> roleList;
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public List<RoleEntity> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<RoleEntity> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<OrganizationEntity> getOrganizationParentList() {
+        return organizationParentList;
+    }
+
+    public void setOrganizationParentList(List<OrganizationEntity> organizationParentList) {
+        this.organizationParentList = organizationParentList;
+    }
 
     public List<UserLimitEntity> getUserLimitList() {
         return userLimitList;

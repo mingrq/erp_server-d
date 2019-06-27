@@ -1,8 +1,8 @@
 package com.ming.login;
 
 import com.google.gson.Gson;
-import com.ming.user.userinfo.entity.UserInfoEntity;
-import com.ming.user.userinfo.service.UserInfoService;
+import com.ming.company.user.entity.UserEntity;
+import com.ming.company.user.service.UserService;
 import com.utils.json.JsonFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static com.sql.Exceptions.StatusCode.*;
+import static com.utils.statuscode.StatusCode.*;
 
 /**
  * 登录接口
@@ -21,7 +21,7 @@ import static com.sql.Exceptions.StatusCode.*;
 public class Login {
 
     @Autowired
-    UserInfoService userInfoService;
+    UserService userService;
 
     /**
      * 登录接口
@@ -61,7 +61,7 @@ public class Login {
         /**
          * 2、使用用户名获取数据库用户信息
          */
-        UserInfoEntity entity = userInfoService.getUserUseLoginName(userLoginName);
+        UserEntity entity = userService.getUserUseLoginName(userLoginName);
         if (entity == null) {
             jsonFrame.setStatusCode(DATABASEERROR);
             jsonFrame.setMessage("没有该用户");
@@ -71,7 +71,7 @@ public class Login {
         return jsonFrame;
     }
 
-    private JsonFrame getUserState(UserInfoEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
+    private JsonFrame getUserState(UserEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
         /**
          * 3、判断用户是否在职--在职继续对比
          * --不在职返回离职提醒
@@ -87,7 +87,7 @@ public class Login {
         return jsonFrame;
     }
 
-    private JsonFrame getIdentificationState(UserInfoEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
+    private JsonFrame getIdentificationState(UserEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
         /**
          * 4、判断用户账号是否冻结--冻结返回账号冻结信息的json
          *                        --账号正常继续对比
@@ -103,7 +103,7 @@ public class Login {
         return jsonFrame;
     }
 
-    private JsonFrame judgeUserIsLogin(UserInfoEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
+    private JsonFrame judgeUserIsLogin(UserEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
         /**
          * 5、对比密码--正确返回用户信息的json
          * --不正确返回登录失败信息的json

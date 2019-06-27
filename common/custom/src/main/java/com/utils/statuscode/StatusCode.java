@@ -1,4 +1,4 @@
-package com.sql.Exceptions;
+package com.utils.statuscode;
 
 public class StatusCode {
 

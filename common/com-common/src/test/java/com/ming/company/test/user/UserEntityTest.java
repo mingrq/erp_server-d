@@ -1,6 +1,8 @@
 package com.ming.company.test.user;
 
+import com.google.gson.Gson;
 import com.ming.company.user.entity.UserEntity;
+import com.ming.company.user.entity.UserInfoEntity;
 import com.ming.company.user.service.UserService;
 import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
@@ -52,7 +54,8 @@ public class UserEntityTest {
      */
     @Test
     public void getUserUseLoginName() {
-        UserEntity entity = userService.getUserUseLoginName("manyangyang");
-        System.out.println(entity.toString());
+        Object entity =  userService.getUserUseLoginName("manyangyang");
+        Gson gson =new Gson();
+        System.out.println("MyTest:  "+gson.toJson(entity));
     }
 }
