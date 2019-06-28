@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.company.organization.dao.OrganizationLimits">
+    <!--添加组织权限-->
+    <insert id="addOrganizationLimit" parameterType="com.ming.company.organization.entity.OrganizationLimitEntity">
 
+    </insert>
+    <!--删除组织权限-->
+    <delete id="deleteOrganizationLimit" parameterType="com.ming.company.organization.entity.OrganizationLimitEntity">
+
+    </delete>
+    <!--修改组织权限-->
+    <update id="alterOrganizationLimit" parameterType="com.ming.company.organization.entity.OrganizationLimitEntity">
+    </update>
+    <!--查询组织权限-->
+    <select id="selectOrganizationLimit" parameterType="int">
+        
+    </select>
 </mapper>

@@ -31,14 +31,14 @@ public interface Organization {
      *
      * @param organizationId 组织id
      */
-    int delectOrganization(int organizationId);
+    int deleteOrganization(int organizationId);
 
     /**
      * 批量删除组织
      *
      * @param organizationIds 组织id集合
      */
-    int delectBatchOrganization(List<Integer> organizationIds);
+    int deleteBatchOrganization(List<Integer> organizationIds);
 
     /**
      * 修改组织

@@ -57,18 +57,18 @@
 <!--删-->
 
 
-    <sql id="delectOrganizationFields">
+    <sql id="deleteOrganizationFields">
         delete from e_b_organization where organization_id
     </sql>
 
     <!--删除组织-->
-    <delete id="delectOrganization" parameterType="java.lang.Integer">
-        <include refid="delectOrganizationFields" />=#{organizationId}
+    <delete id="deleteOrganization" parameterType="java.lang.Integer">
+        <include refid="deleteOrganizationFields" />=#{organizationId}
     </delete>
 
     <!--批量删除组织-->
-    <delete id="delectBatchOrganization" parameterType="java.util.List">
-        <include refid="delectOrganizationFields" /> in
+    <delete id="deleteBatchOrganization" parameterType="java.util.List">
+        <include refid="deleteOrganizationFields" /> in
         <foreach collection="list" item="item" separator="," open="(" close=")">
             #{item}
         </foreach>

@@ -43,12 +43,6 @@ public class GatherUserInfoAspect {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-       /* System.out.println("after......");
-
-
-
-
-      */
      return null;
     }
 }

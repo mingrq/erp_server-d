@@ -1,5 +1,8 @@
 package com.ming.company.role.entity;
 
+/**
+ * 角色
+ */
 public class RoleEntity {
     //角色id
     int RoleId;

@@ -1,9 +1,18 @@
 package com.ming.company.user.service;
 
+import com.ming.company.organization.entity.OrganizationLimitEntity;
+import com.ming.company.organization.service.OrganizationLimitsService;
+import com.ming.company.role.dao.Role;
+import com.ming.company.role.entity.RoleEntity;
+import com.ming.company.role.entity.RoleLimitEntity;
+import com.ming.company.role.service.RoleLimitsSrvice;
+import com.ming.company.role.service.RoleService;
 import com.ming.company.user.aop.anno.GatherUserInfo;
 import com.ming.company.user.dao.User;
 import com.ming.company.user.entity.UserEntity;
 import com.ming.company.user.entity.UserInfoEntity;
+import com.ming.company.user.entity.UserLimitEntity;
+import com.ming.company.user.entity.UserTemporaryLimitEntity;
 import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +21,23 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserService {
 
     @Autowired
     User user;
+    @Autowired
+    RoleService roleService;
+    @Autowired
+    OrganizationLimitsService organizationLimitsService;
+    @Autowired
+    UserLimitsService userLimitsService;
+    @Autowired
+    RoleLimitsSrvice roleLimitsSrvice;
+    @Autowired
+    UserTemporaryLimitService userTemporaryLimitService;
 
     public UserService() {
     }
@@ -34,15 +54,15 @@ public class UserService {
         try {
             //添加用户
             int addResult = user.addUser(userEntity);
-            if (addResult<1){
+            if (addResult < 1) {
                 throw new SqlAddDataFailureException();
             }
-        }catch (Exception e){
-            if( e.getCause() instanceof SQLIntegrityConstraintViolationException){
+        } catch (Exception e) {
+            if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
                 throw new SqlDataUniqueException(e.getCause());
             }
         }
-       return userEntity;
+        return userEntity;
     }
 
     /**
@@ -153,9 +173,24 @@ public class UserService {
     /**
      * 查询用户信息-根据登录用户名
      */
+    public Object getUserUseLoginName(String userLoginName) {
+        //1、获取用户信息
+        UserEntity userEntity = user.getUserUseLoginName(userLoginName);
+        //2、获取组织权限
+        List<OrganizationLimitEntity> organizationLimitList = organizationLimitsService.selectOrganizationLimit(userEntity.getUserOrganization());
+        //3、获取个人权限
+        List<UserLimitEntity> userLimitList = userLimitsService.selectUserLimit(userEntity.getUserId());
+        //4、获取角色
+        List<RoleEntity> roleList = roleService.selectRole(userEntity.getUserId());
+        //5、获取角色权限
+        for (RoleEntity roleEntity:roleList){
+            List<RoleLimitEntity> roleLimitList = roleLimitsSrvice.selectRoleLimits(roleEntity.getRoleId());
+        }
+        //6、获取临时权限
+        List<UserTemporaryLimitEntity> userTemporaryLimitList = userTemporaryLimitService.selectTemporaryLimit();
+        //7、组织用户信息类，返回
 
-    public Object getUserUseLoginName(String userLoginName){
-        UserEntity userEntity =  user.getUserUseLoginName(userLoginName);
+
         return userEntity;
     }
 }

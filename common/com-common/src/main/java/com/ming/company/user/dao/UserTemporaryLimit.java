@@ -3,6 +3,7 @@ package com.ming.company.user.dao;
 /**
  * 用户临时权限
  */
+
 public interface UserTemporaryLimit {
     /**
      * 添加临时权限
