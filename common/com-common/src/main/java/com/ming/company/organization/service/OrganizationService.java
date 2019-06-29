@@ -81,18 +81,18 @@ public class OrganizationService {
      *
      * @param organizationId 组织id
      */
-    public int delectOrganization(int organizationId) {
+   /* public int delectOrganization(int organizationId) {
         return organization.delectOrganization(organizationId);
-    }
+    }*/
 
     /**
      * 批量删除组织
      *
      * @param organizationIds 组织id集合
      */
-    public int delectBatchOrganization(List<Integer> organizationIds) {
+   /* public int delectBatchOrganization(List<Integer> organizationIds) {
         return organization.delectBatchOrganization(organizationIds);
-    }
+    }*/
 
     /**
      * 修改组织

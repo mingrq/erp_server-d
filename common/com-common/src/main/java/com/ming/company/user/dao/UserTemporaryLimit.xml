@@ -20,7 +20,15 @@
 
     </update>
     <!--查询临时权限-->
-    <select id="selectTemporaryLimit">
-
+    <resultMap id="selectTemporaryLimitList" type="com.ming.company.user.entity.UserTemporaryLimitEntity">
+        <result column="tul_tem_user_id" property="UserId"/>
+        <result column="tul_tem_limits_id" property="LimitsId"/>
+        <result column="tul_tem_entrust_state" property="EntrustState"/>
+        <result column="tul_tem_entrust_user_id" property="EntrustUserId"/>
+        <result column="tul_tem_entrust_time" property="EntrustTime"/>
+        <result column="tul_tem_entrust_over_time" property="EntrustOverTime"/>
+    </resultMap>
+    <select id="selectTemporaryLimit" parameterType="int" resultMap="selectTemporaryLimitList">
+      SELECT * FROM e_b_user_temporary_limits WHERE tul_tem_user_id = #{userId} AND tul_tem_entrust_state = 0;
     </select>
 </mapper>

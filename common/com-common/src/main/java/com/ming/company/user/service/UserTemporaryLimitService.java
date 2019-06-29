@@ -1,5 +1,7 @@
 package com.ming.company.user.service;
 
+import com.ming.company.user.dao.UserTemporaryLimit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,35 +11,45 @@ import java.util.List;
  */
 @Service
 public class UserTemporaryLimitService {
+    @Autowired
+    UserTemporaryLimit userTemporaryLimit;
+
     /**
      * 添加临时权限
      */
 
-    public void addTemporaryLimit(){}
+    public void addTemporaryLimit() {
+    }
 
     /**
      * 批量添加临时权限
      */
 
-    public void addBatchTemporaryLimit(){}
+    public void addBatchTemporaryLimit() {
+    }
 
     /**
      * 修改临时权限
      */
 
-    public void alterTemporaryLimit(){}
+    public void alterTemporaryLimit() {
+    }
 
     /**
      * 批量修改临时权限
      */
 
-    public void alterBatchTemporaryLimit(){}
+    public void alterBatchTemporaryLimit() {
+    }
 
     /**
-     * 查询临时权限
+     * 查询临时权限？根据用户id
+     *
+     * @param userId 用户id
+     * @return 临时权限集
      */
 
-    public List selectTemporaryLimit(){
-        return null;
+    public List selectTemporaryLimit(int userId) {
+        return userTemporaryLimit.selectTemporaryLimit(userId);
     }
 }

@@ -1,8 +1,10 @@
 package com.ming.company.test.user;
 
 import com.google.gson.Gson;
+import com.ming.company.limits.entity.LimitEntity;
 import com.ming.company.user.entity.UserEntity;
 import com.ming.company.user.entity.UserInfoEntity;
+import com.ming.company.user.service.UserLimitsService;
 import com.ming.company.user.service.UserService;
 import com.sql.Exceptions.SqlAddDataFailureException;
 import com.sql.Exceptions.SqlDataUniqueException;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -19,6 +23,8 @@ public class UserEntityTest {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserLimitsService userLimitsService;
     @Autowired
     UserEntity userEntity;
 
@@ -54,8 +60,18 @@ public class UserEntityTest {
      */
     @Test
     public void getUserUseLoginName() {
-        Object entity =  userService.getUserUseLoginName("manyangyang");
-        Gson gson =new Gson();
-        System.out.println("MyTest:  "+gson.toJson(entity));
+        Object entity = userService.getUserUseLoginName("manyangyang");
+        Gson gson = new Gson();
+        System.out.println("MyTest:  " + gson.toJson(entity));
+    }
+
+    /**
+     * 查询用户信息-根据登录用户名
+     */
+    @Test
+    public void selectAllUserLimits() {
+        List<LimitEntity> entity = userLimitsService.selectAllUserLimits(1);
+        Gson gson = new Gson();
+        System.out.println("MyTest:  " + gson.toJson(entity));
     }
 }

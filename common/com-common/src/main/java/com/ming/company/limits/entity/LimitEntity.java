@@ -1,5 +1,8 @@
 package com.ming.company.limits.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LimitEntity {
     //权限id
     int LimitId;

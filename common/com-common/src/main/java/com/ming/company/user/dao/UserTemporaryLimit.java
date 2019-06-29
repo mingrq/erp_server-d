@@ -1,5 +1,7 @@
 package com.ming.company.user.dao;
 
+import java.util.List;
+
 /**
  * 用户临时权限
  */
@@ -29,10 +31,14 @@ public interface UserTemporaryLimit {
 
     void alterBatchTemporaryLimit();
 
+
+
     /**
-     * 查询临时权限
+     * 查询临时权限？根据用户id
+     *
+     * @param userId 用户id
+     * @return 临时权限集
      */
 
-    void selectTemporaryLimit();
-
+     List selectTemporaryLimit(int userId);
 }

@@ -3,6 +3,8 @@ package com.ming.company.role.dao;
 
 import com.ming.company.role.entity.RoleEntity;
 
+import java.util.List;
+
 /**
  * 角色权限
  */
@@ -25,5 +27,12 @@ public interface Role {
     /**
      * 查询角色
      */
-    RoleEntity selectRole(int roleId);
+    List<RoleEntity> selectRole(int roleId);
+
+    /**
+     * 查询角色
+     * @param userId 用户id
+     * @return 用户角色集
+     */
+    List<RoleEntity> selectRoleByUserId(int userId);
 }

@@ -71,19 +71,19 @@ public class OrganizationTest {
     /*删除组织*/
     @Test
     public void delectOrganization() {
-        int delectResult = service.delectOrganization(42);
-        System.out.println("成功删除" + delectResult + "条组织");
+       /* int delectResult = service.delectOrganization(42);
+        System.out.println("成功删除" + delectResult + "条组织");*/
     }
 
 
     /*批量删除组织*/
     @Test
     public void delectBatchOrganization() {
-        List<Integer> delectIds = new ArrayList<>();
+       /* List<Integer> delectIds = new ArrayList<>();
         delectIds.add(40);
         delectIds.add(41);
         int delectResult = service.delectBatchOrganization(delectIds);
-        System.out.println("成功删除" + delectResult + "条组织");
+        System.out.println("成功删除" + delectResult + "条组织");*/
     }
 
     /*修改组织*/

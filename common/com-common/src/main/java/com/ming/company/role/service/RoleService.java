@@ -15,6 +15,7 @@ public class RoleService {
 
     @Autowired
     Role role;
+
     /**
      * 添加角色
      */
@@ -37,8 +38,11 @@ public class RoleService {
 
     /**
      * 查询角色
+     *
+     * @param userId 用户id
+     * @return 用户角色集
      */
-    public List selectRole(int roleId) {
-        return null;
+    public List selectRoleByUserId(int userId) {
+        return role.selectRoleByUserId(userId);
     }
 }

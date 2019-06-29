@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ming.company.user.dao.UserLimits">
 
-
+    <!--查询用户在组织内除临时权限的所有权限-->
+    <resultMap id="limitEntityList" type="com.ming.company.limits.entity.LimitEntity">
+        <id column="limits_id" property="LimitId"/>
+        <result column="linits_name" property="LimitName"/>
+        <result column="parent_limits_id" property="ParentLimitsId"/>
+    </resultMap>
+    <select id="selectAllUserLimits" parameterType="int" resultMap="limitEntityList">
+        SELECT * FROM e_b_limits WHERE FIND_IN_SET(limits_id,fun_select_userall_limits( #{userId}));
+    </select>
 </mapper>
