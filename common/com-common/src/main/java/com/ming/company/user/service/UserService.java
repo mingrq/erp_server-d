@@ -1,5 +1,6 @@
 package com.ming.company.user.service;
 
+import com.ming.company.limits.entity.LimitEntity;
 import com.ming.company.organization.entity.OrganizationLimitEntity;
 import com.ming.company.organization.service.OrganizationLimitsService;
 import com.ming.company.role.dao.Role;
@@ -38,6 +39,8 @@ public class UserService {
     RoleLimitsSrvice roleLimitsSrvice;
     @Autowired
     UserTemporaryLimitService userTemporaryLimitService;
+    @Autowired
+    UserInfoEntity userInfoEntity;
 
     public UserService() {
     }
@@ -165,32 +168,51 @@ public class UserService {
 
     /**
      * 查询用户信息
+     * -根据用户id获取
+     * 查询用户个人信息
+     *
+     * @param id 用户id
+     * @return 用户个人信息类
      */
-    public UserEntity getUserUseId(int id) {
+    public Object getUserUseId(int id) {
         return user.getUserUseId(id);
     }
 
     /**
-     * 查询用户信息-根据登录用户名
+     * 查询用户个人信息、用户在组织的信息等所有信息
+     * --根据用户id查询
+     * 查询包括个人信息；临时权限；所有权限（个人、组织、角色）；角色集合
+     *
+     * @param id 用户id
+     * @return 用户信息类
+     */
+    public Object getUserInfoUseId(int id) {
+        //1、获取用户信息
+        UserEntity userEntity = user.getUserUseId(id);
+        //2、获取所有权限
+        List<LimitEntity> userLimitList = userLimitsService.selectUserLimit(userEntity.getUserId());
+        //3、获取角色
+        List<RoleEntity> roleList = roleService.selectRole(userEntity.getUserId());
+        //4、获取临时权限
+        List<UserTemporaryLimitEntity> userTemporaryLimitList = userTemporaryLimitService.selectTemporaryLimit();
+        //5、组织用户信息类，返回
+        userInfoEntity.setUserEntity(userEntity);
+        userInfoEntity.setLimitList(userLimitList);
+        userInfoEntity.setRoleList(roleList);
+        userInfoEntity.setUserTemporaryLimitList(userTemporaryLimitList);
+        return userInfoEntity;
+    }
+
+    /**
+     * 查询用户信息
+     * -根据登录用户名获取
+     * 查询用户个人信息
+     *
+     * @param userLoginName 用户登录名
+     * @return 用户个人信息类
      */
     public Object getUserUseLoginName(String userLoginName) {
-        //1、获取用户信息
         UserEntity userEntity = user.getUserUseLoginName(userLoginName);
-        //2、获取组织权限
-        List<OrganizationLimitEntity> organizationLimitList = organizationLimitsService.selectOrganizationLimit(userEntity.getUserOrganization());
-        //3、获取个人权限
-        List<UserLimitEntity> userLimitList = userLimitsService.selectUserLimit(userEntity.getUserId());
-        //4、获取角色
-        List<RoleEntity> roleList = roleService.selectRole(userEntity.getUserId());
-        //5、获取角色权限
-        for (RoleEntity roleEntity:roleList){
-            List<RoleLimitEntity> roleLimitList = roleLimitsSrvice.selectRoleLimits(roleEntity.getRoleId());
-        }
-        //6、获取临时权限
-        List<UserTemporaryLimitEntity> userTemporaryLimitList = userTemporaryLimitService.selectTemporaryLimit();
-        //7、组织用户信息类，返回
-
-
         return userEntity;
     }
 }

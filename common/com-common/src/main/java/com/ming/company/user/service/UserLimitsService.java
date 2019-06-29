@@ -33,4 +33,14 @@ public class UserLimitsService {
     List selectUserLimit(int userId){
         return null;
     }
+
+    /**
+     * 查询用户在组织内除临时权限的所有权限
+     * 查询权限包括 组织权限 角色权限 个人权限
+     * @param userId 用户id
+     * @return 用户权限集
+     */
+    List selectAllUserLimits(int userId){
+        return null;
+    }
 }
