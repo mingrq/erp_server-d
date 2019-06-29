@@ -178,8 +178,11 @@ public class Login {
      * @return
      */
     private JsonFrame getUserInfo(UserEntity entity, JsonFrame jsonFrame) {
+        //获取用户信息
         UserInfoEntity userInfoEntity = userService.getUserInfoUseId(entity);
+        //将用户信息装入json实体类中
         jsonFrame.setEntity(userInfoEntity);
+        //返回
         return jsonFrame;
     }
 }
