@@ -8,7 +8,6 @@ import com.ming.company.role.entity.RoleEntity;
 import com.ming.company.role.entity.RoleLimitEntity;
 import com.ming.company.role.service.RoleLimitsSrvice;
 import com.ming.company.role.service.RoleService;
-import com.ming.company.user.aop.anno.GatherUserInfo;
 import com.ming.company.user.dao.User;
 import com.ming.company.user.entity.UserEntity;
 import com.ming.company.user.entity.UserInfoEntity;

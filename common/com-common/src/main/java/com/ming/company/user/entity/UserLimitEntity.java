@@ -5,23 +5,23 @@ package com.ming.company.user.entity;
  */
 public class UserLimitEntity {
     //用户id
-    int UserId;
+    int userId;
     //权限id
-    int LimitId;
+    int limitId;
 
     public int getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(int userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public int getLimitId() {
-        return LimitId;
+        return limitId;
     }
 
     public void setLimitId(int limitId) {
-        LimitId = limitId;
+        this.limitId = limitId;
     }
 }

@@ -5,63 +5,63 @@ package com.ming.company.user.entity;
  */
 public class UserTemporaryLimitEntity {
     //用户id
-    int UserId;
+    int userId;
     //权限id
-    int LimitsId;
+    int limitsId;
     //权限状态
-    int EntrustState;
+    int entrustState;
     //授权人id
-    int EntrustUserId;
+    int entrustUserId;
     //授权时间
-    String EntrustTime;
+    String entrustTime;
     //结束授权时间
-    String EntrustOverTime;
+    String entrustOverTime;
 
     public int getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(int userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public int getLimitsId() {
-        return LimitsId;
+        return limitsId;
     }
 
     public void setLimitsId(int limitsId) {
-        LimitsId = limitsId;
+        this.limitsId = limitsId;
     }
 
     public int getEntrustState() {
-        return EntrustState;
+        return entrustState;
     }
 
     public void setEntrustState(int entrustState) {
-        EntrustState = entrustState;
+        this.entrustState = entrustState;
     }
 
     public int getEntrustUserId() {
-        return EntrustUserId;
+        return entrustUserId;
     }
 
     public void setEntrustUserId(int entrustUserId) {
-        EntrustUserId = entrustUserId;
+        this.entrustUserId = entrustUserId;
     }
 
     public String getEntrustTime() {
-        return EntrustTime;
+        return entrustTime;
     }
 
     public void setEntrustTime(String entrustTime) {
-        EntrustTime = entrustTime;
+        this.entrustTime = entrustTime;
     }
 
     public String getEntrustOverTime() {
-        return EntrustOverTime;
+        return entrustOverTime;
     }
 
     public void setEntrustOverTime(String entrustOverTime) {
-        EntrustOverTime = entrustOverTime;
+        this.entrustOverTime = entrustOverTime;
     }
 }

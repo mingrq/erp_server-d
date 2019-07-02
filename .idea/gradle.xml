@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/common/com-common" />
             <option value="$PROJECT_DIR$/common/custom" />
+            <option value="$PROJECT_DIR$/operation/communication" />
             <option value="$PROJECT_DIR$/operation/login" />
           </set>
         </option>

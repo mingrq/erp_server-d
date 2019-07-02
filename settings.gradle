@@ -1,8 +1,14 @@
 rootProject.name = 'erp_server'
+//登录模块
 include 'login'
 project(':login').projectDir = new File(rootDir,'operation/login')
+//自定义模块
 include 'custom'
 project(':custom').projectDir = new File(rootDir,'common/custom')
+//公用功能模块
 include 'com-common'
 project(':com-common').projectDir = new File(rootDir,'common/com-common')
+//手机通讯模块
+include 'communication'
+project(':communication').projectDir = new File(rootDir,'operation/communication')
 

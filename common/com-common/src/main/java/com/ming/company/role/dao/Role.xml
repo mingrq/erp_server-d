@@ -4,7 +4,7 @@
     <!-- 添加角色-->
     <insert id="addRole"
             useGeneratedKeys="true"
-            keyProperty="RoleId"
+            keyProperty="roleId"
             parameterType="com.ming.company.role.entity.RoleEntity">
 
     </insert>
@@ -22,9 +22,9 @@
 
     <!--查询角色?根据用户id-->
     <resultMap id="selectRoleByUserIdList" type="com.ming.company.role.entity.RoleEntity">
-        <id column="role_id" property="RoleId"/>
-        <result column="role_name" property="RoleName"/>
-        <result column="role_gen_time" property="RoleGenTime"/>
+        <id column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_gen_time" property="roleGenTime"/>
     </resultMap>
     <select id="selectRoleByUserId" parameterType="int" resultMap="selectRoleByUserIdList">
       SELECT * FROM e_v_user_role where userid =  #{userId};

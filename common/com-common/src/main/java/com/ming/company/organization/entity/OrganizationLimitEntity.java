@@ -5,23 +5,23 @@ package com.ming.company.organization.entity;
  */
 public class OrganizationLimitEntity {
     //组织id
-    int OrganizationId;
+    int organizationId;
     //权限id
-    int LimitId;
+    int limitId;
 
     public int getOrganizationId() {
-        return OrganizationId;
+        return organizationId;
     }
 
     public void setOrganizationId(int organizationId) {
-        OrganizationId = organizationId;
+        this.organizationId = organizationId;
     }
 
     public int getLimitId() {
-        return LimitId;
+        return limitId;
     }
 
     public void setLimitId(int limitId) {
-        LimitId = limitId;
+        this.limitId = limitId;
     }
 }

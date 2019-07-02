@@ -5,23 +5,23 @@ package com.ming.company.role.entity;
  */
 public class RoleLimitEntity {
     //角色id
-    int RoleId;
+    int roleId;
     //权限id
-    int LimitId;
+    int limitId;
 
     public int getRoleId() {
-        return RoleId;
+        return roleId;
     }
 
     public void setRoleId(int roleId) {
-        RoleId = roleId;
+        this.roleId = roleId;
     }
 
     public int getLimitId() {
-        return LimitId;
+        return limitId;
     }
 
     public void setLimitId(int limitId) {
-        LimitId = limitId;
+        this.limitId = limitId;
     }
 }

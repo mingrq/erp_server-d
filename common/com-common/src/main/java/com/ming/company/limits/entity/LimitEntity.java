@@ -5,33 +5,33 @@ import org.springframework.stereotype.Component;
 @Component
 public class LimitEntity {
     //权限id
-    int LimitId;
+    int limitId;
     //权限名称
-    String LimitName;
+    String limitName;
     //父权限id
-    int ParentLimitsId;
+    int parentLimitsId;
 
     public int getLimitId() {
-        return LimitId;
+        return limitId;
     }
 
     public void setLimitId(int limitId) {
-        LimitId = limitId;
+        this.limitId = limitId;
     }
 
     public String getLimitName() {
-        return LimitName;
+        return limitName;
     }
 
     public void setLimitName(String limitName) {
-        LimitName = limitName;
+        this.limitName = limitName;
     }
 
     public int getParentLimitsId() {
-        return ParentLimitsId;
+        return parentLimitsId;
     }
 
     public void setParentLimitsId(int parentLimitsId) {
-        ParentLimitsId = parentLimitsId;
+        this.parentLimitsId = parentLimitsId;
     }
 }

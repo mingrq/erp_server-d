@@ -4,9 +4,9 @@
 
     <!--查询用户在组织内除临时权限的所有权限-->
     <resultMap id="limitEntityList" type="com.ming.company.limits.entity.LimitEntity">
-        <id column="limits_id" property="LimitId"/>
-        <result column="linits_name" property="LimitName"/>
-        <result column="parent_limits_id" property="ParentLimitsId"/>
+        <id column="limits_id" property="limitId"/>
+        <result column="linits_name" property="limitName"/>
+        <result column="parent_limits_id" property="parentLimitsId"/>
     </resultMap>
     <select id="selectAllUserLimits" parameterType="int" resultMap="limitEntityList">
         SELECT * FROM e_b_limits WHERE FIND_IN_SET(limits_id,fun_select_userall_limits( #{userId}));

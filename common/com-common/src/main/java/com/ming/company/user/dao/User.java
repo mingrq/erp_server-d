@@ -2,7 +2,6 @@ package com.ming.company.user.dao;
 
 
 import com.ming.company.user.entity.UserEntity;
-import com.ming.company.user.entity.UserInfoEntity;
 
 /**
  * 用户信息

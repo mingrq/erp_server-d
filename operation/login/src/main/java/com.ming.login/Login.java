@@ -63,6 +63,10 @@ public class Login {
 
     /**
      * 获取用户信息
+     * <p>
+     * 2、使用用户名获取数据库用户信息
+     * 判断查询结果是否存在 用户个人信息不存在反馈客户端没有这个用户
+     * 用户存在继续判断用户状态：离职&在职
      *
      * @param userLoginName 用户登录用户名
      * @param password      用户密码
@@ -72,11 +76,7 @@ public class Login {
      * @return json实体
      */
     private JsonFrame getUserInfo(String userLoginName, String password, int source, int version, JsonFrame jsonFrame) {
-        /**
-         * 2、使用用户名获取数据库用户信息
-         * 判断查询结果是否存在 用户个人信息不存在反馈客户端没有这个用户
-         * 用户存在继续判断用户状态：离职&在职
-         */
+
         //用户个人信息
         UserEntity entity = (UserEntity) userService.getUserUseLoginName(userLoginName);
         //判断用户是否存在
@@ -93,6 +93,9 @@ public class Login {
 
     /**
      * 获取用户状态
+     * <p>
+     * 3、判断用户是否在职：在职继续查询用户登录账号状态  正常&冻结
+     * --不在职返回离职提醒
      *
      * @param entity    用户个人信息类
      * @param password  登录密码
@@ -102,10 +105,7 @@ public class Login {
      * @return json实体
      */
     private JsonFrame getUserState(UserEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
-        /**
-         * 3、判断用户是否在职：在职继续查询用户登录账号状态  正常&冻结
-         * --不在职返回离职提醒
-         */
+
         if (entity.getUserState() == 0) {
             //在职；继续查询用户账号状态
             jsonFrame = getIdentificationState(entity, password, source, version, jsonFrame);
@@ -119,6 +119,9 @@ public class Login {
 
     /**
      * 获取用户登录账号状态
+     * <p>
+     * 4、判断用户账号是否冻结--冻结返回账号冻结信息的json
+     * --账号正常继续查询:判断用户密码是否正确
      *
      * @param entity    用户个人信息类
      * @param password  登录密码
@@ -128,10 +131,7 @@ public class Login {
      * @return json实体
      */
     private JsonFrame getIdentificationState(UserEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
-        /**
-         * 4、判断用户账号是否冻结--冻结返回账号冻结信息的json
-         *                        --账号正常继续查询:判断用户密码是否正确
-         */
+
         if (entity.getIdentificationState() == 0) {
             //账号正常，判断用户密码是否正确
             jsonFrame = judgeUserIsLogin(entity, password, source, version, jsonFrame);
@@ -146,6 +146,9 @@ public class Login {
     /**
      * 判断用户密码是否正确
      *
+     * 5、对比密码--密码正确查询用户在组织中的所有信息（包括用户的角色集、权限集）
+     * --不正确返回登录失败信息的json
+     *
      * @param entity    用户个人信息类
      * @param password  登录密码
      * @param source    登录来源
@@ -154,10 +157,6 @@ public class Login {
      * @return json实体
      */
     private JsonFrame judgeUserIsLogin(UserEntity entity, String password, int source, int version, JsonFrame jsonFrame) {
-        /**
-         * 5、对比密码--密码正确查询用户在组织中的所有信息（包括用户的角色集、权限集）
-         * --不正确返回登录失败信息的json
-         */
         if (password.equals(entity.getUserLoginPw())) {
             //密码正确
             //获取用户在组织中的所有信息

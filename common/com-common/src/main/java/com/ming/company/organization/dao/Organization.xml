@@ -18,37 +18,37 @@
     <!-- 添加组织-->
     <insert id="addOrganization"
             useGeneratedKeys="true"
-            keyProperty="OrganizationId"
+            keyProperty="organizationId"
             parameterType="com.ming.company.organization.entity.OrganizationEntity">
         <include refid="addOrganizationFields"/>
         (
-        #{OrganizationName},
-        <if test="OrganizationSuperior != -1">
-            #{OrganizationSuperior},
+        #{organizationName},
+        <if test="organizationSuperior != -1">
+            #{organizationSuperior},
         </if>
-        <if test="OrganizationSuperior == -1">
+        <if test="organizationSuperior == -1">
             null,
         </if>
-        #{OrganizationGenTime}
+        #{organizationGenTime}
         )
     </insert>
 
     <!--批量添加组织-->
     <insert id="addBatchOrganization"
             useGeneratedKeys="true"
-            keyProperty="OrganizationId"
+            keyProperty="organizationId"
             parameterType="java.util.List">
         <include refid="addOrganizationFields"/>
         <foreach collection="list" item="item" index="index" separator=",">
             (
-            #{item.OrganizationName},
-            <if test="item.OrganizationSuperior != -1">
-                #{item.OrganizationSuperior},
+            #{item.organizationName},
+            <if test="item.organizationSuperior != -1">
+                #{item.organizationSuperior},
             </if>
-            <if test="item.OrganizationSuperior == -1">
+            <if test="item.organizationSuperior == -1">
                null,
             </if>
-            #{item.OrganizationGenTime}
+            #{item.organizationGenTime}
             )
         </foreach>
     </insert>
@@ -83,12 +83,12 @@
         update e_b_organization
         <set>
             <if test="OrganizationName != null">
-                organization_name=#{OrganizationName}
+                organization_name=#{organizationName}
             </if>
             <if test="OrganizationSuperior != -1">
-               , organization_superior=#{OrganizationSuperior}
+               , organization_superior=#{organizationSuperior}
             </if>
-            where organization_id = #{OrganizationId}
+            where organization_id = #{organizationId}
         </set>
     </update>
 
@@ -98,13 +98,13 @@
             update e_b_organization
             <set>
                 <if test="item.OrganizationName != null">
-                    organization_name=#{item.OrganizationName}
+                    organization_name=#{item.organizationName}
                 </if>
                 <if test="item.OrganizationSuperior != -1">
-                    , organization_superior=#{item.OrganizationSuperior}
+                    , organization_superior=#{item.organizationSuperior}
                 </if>
             </set>
-            where organization_id = #{item.OrganizationId}
+            where organization_id = #{item.organizationId}
         </foreach>
     </update>
 
@@ -112,10 +112,10 @@
 <!--查-->
 
     <sql id="getOrganizationFields">
-        select organization_id as OrganizationId,
-                organization_name as OrganizationName,
-                organization_superior as OrganizationSuperior,
-                organization_gen_time as OrganizationGenTime
+        select organization_id as organizationId,
+                organization_name as organizationName,
+                organization_superior as organizationSuperior,
+                organization_gen_time as organizationGenTime
         from e_b_organization
     </sql>
 

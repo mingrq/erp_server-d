@@ -5,44 +5,44 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrganizationEntity {
     //组织id
-    private int OrganizationId;
+    private int organizationId;
     //组织名称
-    private String OrganizationName;
+    private String organizationName;
     //上级组织id
-    private int OrganizationSuperior = -1;
+    private int organizationSuperior = -1;
     //创建时间
-    private String OrganizationGenTime;
+    private String organizationGenTime;
 
     public int getOrganizationId() {
-        return OrganizationId;
+        return organizationId;
     }
 
     public void setOrganizationId(int organizationId) {
-        OrganizationId = organizationId;
+        this.organizationId = organizationId;
     }
 
     public String getOrganizationName() {
-        return OrganizationName;
+        return organizationName;
     }
 
     public void setOrganizationName(String organizationName) {
-        OrganizationName = organizationName;
+        this.organizationName = organizationName;
     }
 
     public int getOrganizationSuperior() {
-        return OrganizationSuperior;
+        return organizationSuperior;
     }
 
     public void setOrganizationSuperior(int organizationSuperior) {
-        OrganizationSuperior = organizationSuperior;
+        this.organizationSuperior = organizationSuperior;
     }
 
     public String getOrganizationGenTime() {
-        return OrganizationGenTime;
+        return organizationGenTime;
     }
 
     public void setOrganizationGenTime(String organizationGenTime) {
-        OrganizationGenTime = organizationGenTime;
+        this.organizationGenTime = organizationGenTime;
     }
 
 }

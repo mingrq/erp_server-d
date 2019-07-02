@@ -5,33 +5,33 @@ package com.ming.company.role.entity;
  */
 public class RoleEntity {
     //角色id
-    int RoleId;
+    int roleId;
     //角色名称
-    String RoleName;
+    String roleName;
     //角色创建时间
-    String RoleGenTime;
+    String roleGenTime;
 
     public int getRoleId() {
-        return RoleId;
+        return roleId;
     }
 
     public void setRoleId(int roleId) {
-        RoleId = roleId;
+        this.roleId = roleId;
     }
 
     public String getRoleName() {
-        return RoleName;
+        return roleName;
     }
 
     public void setRoleName(String roleName) {
-        RoleName = roleName;
+        this.roleName = roleName;
     }
 
     public String getRoleGenTime() {
-        return RoleGenTime;
+        return roleGenTime;
     }
 
     public void setRoleGenTime(String roleGenTime) {
-        RoleGenTime = roleGenTime;
+        this.roleGenTime = roleGenTime;
     }
 }
