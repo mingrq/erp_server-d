@@ -18,6 +18,8 @@ public class UserEntity {
     private String userNumber;
     //用户电话号码
     private String userPhone;
+    //用户电话号码分机号
+    private String phoneCode;
     //用户手机号
     private String userMobile;
     //用户住址
@@ -82,6 +84,14 @@ public class UserEntity {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
+    }
+
+    public String getPhoneCode() {
+        return phoneCode;
+    }
+
+    public void setPhoneCode(String phoneCode) {
+        this.phoneCode = phoneCode;
     }
 
     public String getUserMobile() {

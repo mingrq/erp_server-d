@@ -178,7 +178,7 @@ public class Login {
      */
     private JsonFrame getUserInfo(UserEntity entity, JsonFrame jsonFrame) {
         //获取用户信息
-        UserInfoEntity userInfoEntity = userService.getUserInfoUseId(entity);
+        UserInfoEntity userInfoEntity = userService.getUserInfo(entity);
         //将用户信息装入json实体类中
         jsonFrame.setEntity(userInfoEntity);
         //返回

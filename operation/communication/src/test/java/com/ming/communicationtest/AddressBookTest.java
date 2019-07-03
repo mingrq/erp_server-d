@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Map;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class AddressBookTest {
@@ -26,6 +28,22 @@ public class AddressBookTest {
         //将用户信息类集转为json字符串
         Gson gson = new Gson();
         JsonFrame jsonFrame = addressBookService.getAddressBookList();
+        String json = gson.toJson(jsonFrame);
+        System.out.println(json);
+    }
+
+    /**
+     * 获取人员通讯录信息详情
+     *
+     * @return
+     */
+    @Test
+    public void getAddressBookDetail() {
+        //将用户信息类集转为json字符串
+        Gson gson = new Gson();
+        Map map = addressBookService.getAddressBookDetail(1);
+        JsonFrame jsonFrame = new JsonFrame();
+        jsonFrame.setEntity(map);
         String json = gson.toJson(jsonFrame);
         System.out.println(json);
     }

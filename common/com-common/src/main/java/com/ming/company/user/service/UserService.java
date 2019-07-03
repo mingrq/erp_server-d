@@ -180,15 +180,15 @@ public class UserService {
 
     /**
      * 查询用户个人信息、用户在组织的信息等所有信息
-     * --根据用户id查询
+     * --根据用户信息类
      * 查询包括个人信息；临时权限；所有权限（个人、组织、角色）；角色集合
      *
      * @param entity 用户个人信息类
      * @return 用户信息类
      */
-    public UserInfoEntity getUserInfoUseId(UserEntity entity) {
+    public UserInfoEntity getUserInfo(UserEntity entity) {
         //1、获取用户id
-        int userId  = entity.getUserId();
+        int userId = entity.getUserId();
         //2、获取所有权限
         List<LimitEntity> userLimitList = userLimitsService.selectAllUserLimits(userId);
         //3、获取角色

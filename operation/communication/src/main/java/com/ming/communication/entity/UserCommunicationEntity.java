@@ -23,5 +23,4 @@ public class UserCommunicationEntity {
     private String userPortrait;
     //用户所在组织id
     private int userOrganization;
-
 }

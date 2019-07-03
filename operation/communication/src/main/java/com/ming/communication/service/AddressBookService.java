@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.utils.statuscode.StatusCode.DATABASEERROR;
 import static com.utils.statuscode.StatusCode.SUCCESS;
+
 @Service
 public class AddressBookService {
 
@@ -27,7 +29,7 @@ public class AddressBookService {
      * @return
      */
     public JsonFrame getAddressBookList() {
-        List<UserEntity> userEntityList = communication.getAddressBookList();
+        List userEntityList = communication.getAddressBookList();
         JsonFrame jsonFrame = new JsonFrame();
         //判断数据是否为空
         if (userEntityList == null) {
@@ -40,5 +42,12 @@ public class AddressBookService {
             jsonFrame.setStatusCode(SUCCESS);
         }
         return jsonFrame;
+    }
+
+    /*获取通讯录详情*/
+    public Map getAddressBookDetail(int userId) {
+        Map userInfo = communication.getAddressBookDetail(userId);
+        userInfo.get("userId");
+        return map;
     }
 }
