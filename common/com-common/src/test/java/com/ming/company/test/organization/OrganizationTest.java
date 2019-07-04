@@ -3,9 +3,9 @@ package com.ming.company.test.organization;
 
 import com.ming.company.organization.entity.OrganizationEntity;
 import com.ming.company.organization.service.OrganizationService;
-import com.sql.Exceptions.SqlAddDataFailureException;
-import com.sql.Exceptions.SqlAlterFailureException;
-import com.sql.Exceptions.SqlDataUniqueException;
+import com.ming.sql.Exceptions.SqlAddDataFailureException;
+import com.ming.sql.Exceptions.SqlAlterFailureException;
+import com.ming.sql.Exceptions.SqlDataUniqueException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -151,5 +152,15 @@ public class OrganizationTest {
     @Test
     public void getOrganizationSuperior() {
         System.out.println(service.getOrganizationSuperior(2));
+    }
+
+    /**
+     * 查询用户所在的公司与子公司集
+     *
+     */
+    @Test
+    public void getCompanyAndSon() {
+        List companyAndSon =  service.getCompanyAndSon(0);
+        System.out.println(companyAndSon);
     }
 }

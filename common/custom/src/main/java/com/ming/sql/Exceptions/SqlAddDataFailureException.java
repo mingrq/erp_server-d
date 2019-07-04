@@ -1,4 +1,4 @@
-package com.sql.Exceptions;
+package com.ming.sql.Exceptions;
 
 /**
  * sql添加数据失败错误

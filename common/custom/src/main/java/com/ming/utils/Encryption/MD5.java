@@ -1,4 +1,4 @@
-package com.utils.Encryption;
+package com.ming.utils.Encryption;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

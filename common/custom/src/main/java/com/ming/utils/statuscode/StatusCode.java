@@ -1,4 +1,4 @@
-package com.utils.statuscode;
+package com.ming.utils.statuscode;
 
 public class StatusCode {
     //获取数据成功

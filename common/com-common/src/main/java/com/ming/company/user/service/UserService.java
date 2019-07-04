@@ -1,20 +1,16 @@
 package com.ming.company.user.service;
 
 import com.ming.company.limits.entity.LimitEntity;
-import com.ming.company.organization.entity.OrganizationLimitEntity;
 import com.ming.company.organization.service.OrganizationLimitsService;
-import com.ming.company.role.dao.Role;
 import com.ming.company.role.entity.RoleEntity;
-import com.ming.company.role.entity.RoleLimitEntity;
 import com.ming.company.role.service.RoleLimitsSrvice;
 import com.ming.company.role.service.RoleService;
 import com.ming.company.user.dao.User;
 import com.ming.company.user.entity.UserEntity;
 import com.ming.company.user.entity.UserInfoEntity;
-import com.ming.company.user.entity.UserLimitEntity;
 import com.ming.company.user.entity.UserTemporaryLimitEntity;
-import com.sql.Exceptions.SqlAddDataFailureException;
-import com.sql.Exceptions.SqlDataUniqueException;
+import com.ming.sql.Exceptions.SqlAddDataFailureException;
+import com.ming.sql.Exceptions.SqlDataUniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

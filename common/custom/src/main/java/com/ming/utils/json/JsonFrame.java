@@ -1,4 +1,4 @@
-package com.utils.json;
+package com.ming.utils.json;
 
 import org.springframework.stereotype.Component;
 

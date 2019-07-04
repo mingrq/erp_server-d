@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.ming.company.user.entity.UserEntity;
 import com.ming.company.user.entity.UserInfoEntity;
 import com.ming.company.user.service.UserService;
-import com.utils.json.JsonFrame;
+import com.ming.utils.json.JsonFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import static com.utils.statuscode.StatusCode.*;
+import static com.ming.utils.statuscode.StatusCode.*;
 
 /**
  * 登录接口

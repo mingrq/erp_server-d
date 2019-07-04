@@ -4,6 +4,7 @@ package com.ming.company.organization.dao;
 import com.ming.company.organization.entity.OrganizationEntity;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -92,4 +93,11 @@ public interface Organization {
      * @return 上级组织
      */
     OrganizationEntity getOrganizationSuperior(int organizationId);
+
+    /**
+     * 查询用户所在的公司与子公司集
+     * @param organizationId
+     * @return
+     */
+    List getCompanyAndSon(int organizationId);
 }

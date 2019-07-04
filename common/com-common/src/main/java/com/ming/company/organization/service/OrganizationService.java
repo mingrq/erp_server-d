@@ -2,10 +2,9 @@ package com.ming.company.organization.service;
 
 import com.ming.company.organization.dao.Organization;
 import com.ming.company.organization.entity.OrganizationEntity;
-import com.sql.Exceptions.SqlAddDataFailureException;
-import com.sql.Exceptions.SqlAlterFailureException;
-import com.sql.Exceptions.SqlDataUniqueException;
-import org.apache.ibatis.type.Alias;
+import com.ming.sql.Exceptions.SqlAddDataFailureException;
+import com.ming.sql.Exceptions.SqlAlterFailureException;
+import com.ming.sql.Exceptions.SqlDataUniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +12,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class OrganizationService {
@@ -101,7 +101,7 @@ public class OrganizationService {
      */
     public int alertOrganization(OrganizationEntity entity) throws SqlAlterFailureException {
         int alterResult = organization.alertOrganization(entity);
-        if (alterResult<1){
+        if (alterResult < 1) {
             throw new SqlAlterFailureException();
         }
         return alterResult;
@@ -114,7 +114,7 @@ public class OrganizationService {
      * @param organizationEntities 组织实体集合
      */
     public int alertBatchOrganization(List<OrganizationEntity> organizationEntities) {
-        int alterBatchResult =organization.alertBatchOrganization(organizationEntities);
+        int alterBatchResult = organization.alertBatchOrganization(organizationEntities);
         return alterBatchResult;
     }
 
@@ -164,5 +164,15 @@ public class OrganizationService {
      */
     public OrganizationEntity getOrganizationSuperior(int organizationId) {
         return organization.getOrganizationSuperior(organizationId);
+    }
+
+    /**
+     * 查询用户所在的公司与子公司集
+     *
+     * @param organizationId
+     * @return
+     */
+    public List getCompanyAndSon(int organizationId) {
+        return organization.getCompanyAndSon(organizationId);
     }
 }

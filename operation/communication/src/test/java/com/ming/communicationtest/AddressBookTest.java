@@ -2,7 +2,7 @@ package com.ming.communicationtest;
 
 import com.google.gson.Gson;
 import com.ming.communication.service.AddressBookService;
-import com.utils.json.JsonFrame;
+import com.ming.utils.json.JsonFrame;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +41,7 @@ public class AddressBookTest {
     public void getAddressBookDetail() {
         //将用户信息类集转为json字符串
         Gson gson = new Gson();
-        Map map = addressBookService.getAddressBookDetail(1);
-        JsonFrame jsonFrame = new JsonFrame();
-        jsonFrame.setEntity(map);
+        JsonFrame jsonFrame = addressBookService.getAddressBookDetail(5);
         String json = gson.toJson(jsonFrame);
         System.out.println(json);
     }

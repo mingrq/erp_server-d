@@ -3,7 +3,7 @@
 <mapper namespace="com.ming.company.organization.dao.Organization">
 
 
-<!--增-->
+    <!--增-->
 
 
     <sql id="addOrganizationFields">
@@ -46,7 +46,7 @@
                 #{item.organizationSuperior},
             </if>
             <if test="item.organizationSuperior == -1">
-               null,
+                null,
             </if>
             #{item.organizationGenTime}
             )
@@ -54,7 +54,7 @@
     </insert>
 
 
-<!--删-->
+    <!--删-->
 
 
     <sql id="deleteOrganizationFields">
@@ -63,19 +63,20 @@
 
     <!--删除组织-->
     <delete id="deleteOrganization" parameterType="java.lang.Integer">
-        <include refid="deleteOrganizationFields" />=#{organizationId}
+        <include refid="deleteOrganizationFields"/>=#{organizationId}
     </delete>
 
     <!--批量删除组织-->
     <delete id="deleteBatchOrganization" parameterType="java.util.List">
-        <include refid="deleteOrganizationFields" /> in
+        <include refid="deleteOrganizationFields"/>
+        in
         <foreach collection="list" item="item" separator="," open="(" close=")">
             #{item}
         </foreach>
     </delete>
 
 
-<!--改-->
+    <!--改-->
 
 
     <!--修改组织-->
@@ -86,7 +87,7 @@
                 organization_name=#{organizationName}
             </if>
             <if test="OrganizationSuperior != -1">
-               , organization_superior=#{organizationSuperior}
+                , organization_superior=#{organizationSuperior}
             </if>
             where organization_id = #{organizationId}
         </set>
@@ -109,7 +110,7 @@
     </update>
 
 
-<!--查-->
+    <!--查-->
 
     <sql id="getOrganizationFields">
         select organization_id as organizationId,
@@ -120,8 +121,10 @@
     </sql>
 
     <!--查询组织-->
-    <select id="getOrganization" parameterType="int" resultType="com.ming.company.organization.entity.OrganizationEntity">
-      <include refid="getOrganizationFields"/> where organization_id=#{organizationId}
+    <select id="getOrganization" parameterType="int"
+            resultType="com.ming.company.organization.entity.OrganizationEntity">
+        <include refid="getOrganizationFields"/>
+        where organization_id=#{organizationId}
     </select>
 
     <!--查询所有组织-->
@@ -140,12 +143,24 @@
     </select>
 
     <!--查询上级组织-->
-    <select id="getOrganizationSuperior" parameterType="int" resultType="com.ming.company.organization.entity.OrganizationEntity">
-        <include refid="getOrganizationFields"/> where organization_id=(select organization_superior from e_b_organization where organization_id=#{organizationId})
+    <select id="getOrganizationSuperior" parameterType="int"
+            resultType="com.ming.company.organization.entity.OrganizationEntity">
+        <include refid="getOrganizationFields"/>
+        where organization_id=(select organization_superior from e_b_organization where
+        organization_id=#{organizationId})
     </select>
 
     <!--查询顶级组织-->
     <select id="getCompany" resultType="com.ming.company.organization.entity.OrganizationEntity">
          select * from e_b_organization where organization_superior is null
+    </select>
+    <!--查询用户所在的公司与子公司集-->
+    <resultMap id="companyAndSonMap" type="java.util.Map">
+        <result column="organization_id" property="organizationId" javaType="int" jdbcType="INTEGER"/>
+        <result column="organization_name" property="organizationName" javaType="String" jdbcType="VARCHAR"/>
+        <result column="organization_tag" property="organizationTag" javaType="int" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="getCompanyAndSon" parameterType="int" resultMap="companyAndSonMap">
+         SELECT organization_id,organization_name,organization_tag FROM e_b_organization WHERE FIND_IN_SET(organization_id,fun_select_orgaization_recursion(#{organizationId}))
     </select>
 </mapper>

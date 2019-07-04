@@ -26,4 +26,5 @@
     <select id="getAddressBookDetail" parameterType="int" resultMap="addressBookDetailMap" >
       select user_id,user_name,user_phone,phone_code,user_mobile,user_email,user_portrait,organization_id,organization_name from e_b_user as userInfo,e_b_organization as org where user_state = 0 and identification_state = 0 and user_id = #{userId} and userInfo.user_organization = org.organization_id;
     </select>
+
 </mapper>

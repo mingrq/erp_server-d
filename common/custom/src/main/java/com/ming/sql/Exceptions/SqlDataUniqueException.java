@@ -1,6 +1,4 @@
-package com.sql.Exceptions;
-
-import java.sql.SQLIntegrityConstraintViolationException;
+package com.ming.sql.Exceptions;
 
 /**
  * 执行Sql违反数据唯一性错误

@@ -4,6 +4,7 @@ package com.ming.company.role.dao;
 import com.ming.company.role.entity.RoleEntity;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色权限
@@ -34,5 +35,5 @@ public interface Role {
      * @param userId 用户id
      * @return 用户角色集
      */
-    List<RoleEntity> selectRoleByUserId(int userId);
+    List<Map> selectRoleByUserId(int userId);
 }
