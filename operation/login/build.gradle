@@ -1,5 +1,5 @@
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile project(":com-common")
+    compile project(":common:com-common")
 }

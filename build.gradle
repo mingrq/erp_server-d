@@ -105,6 +105,6 @@ subprojects {
 
 dependencies {
     /*以下是使用的模块*/
-    compile project(":login")
-    compile project(":communication")
+    compile project(":operation:login")
+    compile project(":operation:communication")
 }
