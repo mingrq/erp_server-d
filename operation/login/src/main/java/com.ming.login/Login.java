@@ -33,7 +33,7 @@ public class Login {
      * @param version  客户端程序版本号
      * @return json字符串
      */
-    @RequestMapping(value = "/clientlogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/clientlogin", method = RequestMethod.POST)
     @ResponseBody
     public String ClientLogin(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "password", required = false) String password, @RequestParam(value = "source", defaultValue = "-1") int source, @RequestParam(value = "version", defaultValue = "-1") int version) {
         /**

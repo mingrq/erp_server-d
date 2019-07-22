@@ -1,9 +1,9 @@
-package com.ming.communication.dao;
+package com.ming.company.user.dao;
 
 import java.util.List;
 import java.util.Map;
 
-public interface Communication {
+public interface UserCommunication {
     /*获取通讯录*/
     List getAddressBookList();
 

@@ -1,10 +1,9 @@
-package com.ming.communication.service;
+package com.ming.company.user.service;
 
-import com.ming.communication.dao.Communication;
 import com.ming.company.organization.service.OrganizationService;
-import com.ming.company.role.dao.Role;
 import com.ming.company.role.entity.RoleEntity;
 import com.ming.company.role.service.RoleService;
+import com.ming.company.user.dao.UserCommunication;
 import com.ming.utils.json.JsonFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,7 @@ import static com.ming.utils.statuscode.StatusCode.SUCCESS;
 public class AddressBookService {
 
     @Autowired
-    Communication communication;
-    @Autowired
-    JsonFrame jsonFrame;
+    UserCommunication communication;
     @Autowired
     RoleService roleService;
     @Autowired
@@ -37,19 +34,8 @@ public class AddressBookService {
      *
      * @return
      */
-    public JsonFrame getAddressBookList() {
-        List userEntityList = communication.getAddressBookList();
-        //判断数据是否为空
-        if (userEntityList == null) {
-            //空数据返回
-            jsonFrame.setStatusCode(DATABASEERROR);
-            jsonFrame.setMessage("没有用户");
-        } else {
-            //获取数据成功
-            jsonFrame.setEntity(userEntityList);
-            jsonFrame.setStatusCode(SUCCESS);
-        }
-        return jsonFrame;
+    public List getAddressBookList() {
+        return communication.getAddressBookList();
     }
 
     /**
@@ -58,7 +44,7 @@ public class AddressBookService {
      * @param userId 用户id
      * @return
      */
-    public JsonFrame getAddressBookDetail(int userId) {
+    public Map<String, Object> getAddressBookDetail(int userId) {
         //新建用户通讯详情Map
         Map<String, Object> userCommunicationInfo = new HashMap<>();
         //获取用户通讯信息
@@ -71,7 +57,6 @@ public class AddressBookService {
         userCommunicationInfo.put("roleList",roleList);
         userCommunicationInfo.put("userAddressBookInfo",userAddressBookInfo);
         userCommunicationInfo.put("companyInfoList",companyInfoList);
-        jsonFrame.setEntity(userCommunicationInfo);
-        return jsonFrame;
+        return userCommunicationInfo;
     }
 }

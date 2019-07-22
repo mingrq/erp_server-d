@@ -1,4 +1,4 @@
-package com.ming.communication.entity;
+package com.ming.company.user.entity;
 
 import org.springframework.stereotype.Component;
 
